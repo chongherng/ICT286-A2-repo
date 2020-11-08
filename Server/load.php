@@ -1,10 +1,8 @@
 <?php
-$query = $_POST["query"];
-queryProduct($query);
 
+getProduct();
 
-    function queryProduct($query)
-    {
+    function getProduct() {
         $local = 'localhost';
         $username = 'X33896239';
         $password = 'X33896239';
@@ -16,21 +14,21 @@ queryProduct($query);
             die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br/>Error number:" . mysqli_connect_errno());
         }
 
-        $sql = "SELECT * FROM product WHERE Description LIKE '$query'" ;
+        $sql = "SELECT * FROM product";
         $result = mysqli_query($dbc, $sql);
         $dataObjArr = [];
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $dataObj = (object) ['ID' => $row["ProductID"], 'Name' => $row["ProductName"], 'Description' => $row["Description"], 'Price' => "$" . $row["Price"]];
+                $dataObj = (object) ['ID' => $row["ProductID"], 'Name' => $row["ProductName"], 'Description' => $row["Description"],'Price' => "$" . $row["Price"]];
                 array_push($dataObjArr, $dataObj);
             }
         } else {
             echo "0 results";
         }
-
         $dataJSON = json_encode($dataObjArr);
         echo $dataJSON;
-        $dbc->close();
-    }
 
-?>
+        $dbc->close();
+}
+
+    
