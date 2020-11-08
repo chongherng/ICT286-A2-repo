@@ -23,7 +23,7 @@ getProduct();
                 array_push($dataObjArr, $dataObj);
             }
         } else {
-            echo "0 results";
+            echo "Error: No result found";
         }
         $dataJSON = json_encode($dataObjArr);
         echo $dataJSON;
