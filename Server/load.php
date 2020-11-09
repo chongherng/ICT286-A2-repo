@@ -19,7 +19,7 @@ getProduct();
         $dataObjArr = [];
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $dataObj = (object) ['ID' => $row["ProductID"], 'Name' => $row["ProductName"], 'Description' => $row["Description"],'Price' => "$" . $row["Price"]];
+                $dataObj = (object) ['ID' => $row["ProductID"], 'Name' => $row["ProductName"], 'Description' => $row["Description"],'Price' => "$" . $row["Price"], 'ImgSrc' => $row["ImgSrc"]];
                 array_push($dataObjArr, $dataObj);
             }
         } else {
@@ -31,4 +31,4 @@ getProduct();
         $dbc->close();
 }
 
-    
+?>
