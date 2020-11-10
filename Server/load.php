@@ -14,7 +14,7 @@ getProduct();
             die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br/>Error number:" . mysqli_connect_errno());
         }
 
-        $sql = "SELECT * FROM product";
+        $sql = "SELECT * FROM Product";
         $result = mysqli_query($dbc, $sql);
         $dataObjArr = [];
         if ($result->num_rows > 0) {
