@@ -1,5 +1,4 @@
 <?php
-$query = $_POST["query"];
 queryProduct($query);
 
 
@@ -15,7 +14,7 @@ queryProduct($query);
         if (mysqli_connect_errno()) {
             die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br/>Error number:" . mysqli_connect_errno());
         }
-
+        $query = $dbc->real_escape_string($_POST["query"]);
         $sql = "SELECT * FROM Product WHERE Description LIKE '$query'" ;
         $result = mysqli_query($dbc, $sql);
         $dataObjArr = [];
