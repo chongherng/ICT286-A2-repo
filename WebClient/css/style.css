@@ -1,4 +1,4 @@
-html, body {margin:0; height:100%;}
+html, body {margin:0; height:100%;overflow: visible;}
 
 *{
     padding:0 px;
@@ -199,7 +199,8 @@ article
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding-bottom: 13vh;
+	padding-bottom: 7vh;
+	padding-top:9vh;
 	font-weight: bold;
 	font-size: 6vh;
 }
