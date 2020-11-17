@@ -121,7 +121,7 @@
                                 <span>Technical</span>
                                 <hr>
                                 <p>Q: How do I create an account?</p>
-                                <p>A: <a href="register.html">Click here to create an account</a></p>
+                                <p>A: <a href="#register">Click here to create an account</a></p>
                                 <p>Q: I'm having trouble signing into my account.</p>
                                 <p>A: If you can't remember your password, click on the '<b>forgotten password</b>' link on the
                                     sign in
@@ -133,7 +133,31 @@
                     </div>
                 </div>
             </article>
-            <article id="login" hidden="hidden" >
+            <article id="login" hidden="hidden">
+                <div class="article-container">
+                    <div class="login-main">
+                        <div class="login-title">
+                            <h2>Sign in</h2>
+                        </div>
+                        <div class="login-form-container">
+                            <form action="#" method="POST" id="login-form">
+                                <div class="field">
+                                    <label for="email">Email Address:</label>
+                                    <br>
+                                    <input type="email" name="email" id="email" placeholder="Email" required>
+                                </div>
+                                <div class="field">
+                                    <label for="password">Password:</label>
+                                    <br>
+                                    <input type="password" name="password" id="password" placeholder="Password" required>
+                                </div>
+                                <button type="submit">
+                                    Sign In
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </article>
             <article id="register" hidden="hidden" >
                 <div class="article-container">
