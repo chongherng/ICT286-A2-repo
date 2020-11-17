@@ -134,13 +134,17 @@ article
 }
 
 
-@media only screen and (max-width:736px){
+@media only screen and (max-width:900px){
 	#help h1 {
 		padding-bottom: 10vh;
 		font-size: 4vh;
 	}
 
 	.reg-title h2{
+		font-size: 25px;
+	}
+
+	.login-title h2{
 		font-size: 25px;
 	}
 
