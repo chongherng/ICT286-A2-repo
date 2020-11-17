@@ -59,6 +59,10 @@ nav a{
     order: 2;
 }
 
+.searchbar {
+    margin-right: 20px;
+}
+
 .nav-link{
     width: 100%;
     text-align: center;
@@ -91,7 +95,7 @@ nav a{
 
 /* Desktop View */
 
-@media only screen and (min-width: 1230px) {
+@media only screen and (min-width: 1200px) {
     .nav-link{
         display: block;
         width: auto;
@@ -114,7 +118,7 @@ nav a{
     }
 
     .menu li{
-        padding: 15px 20px;
+        padding: 15px 7px;
         position: relative;
     }
 
@@ -145,12 +149,12 @@ nav a{
         transition: all ease-in-out 200ms;
     }
 
-    .nav-link.link:hover::before{
-        width: 50%;
+    .link:hover a:before{
+        width: 80%;
     }
 
     .active.nav-link.link a:before{
-        width: 50%;
+        width: 80%;
     }
 
 

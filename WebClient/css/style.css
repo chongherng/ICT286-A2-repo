@@ -15,6 +15,14 @@ article
 	min-height: 100vh;
 }
 
+.nav-link input[type=text] {
+	padding:4px;
+	border: 2px solid #ccc;
+	font-size: 12px;
+	border-radius: 25px;
+	width: 300px;
+}
+
 
 .content-container{
 	margin-top: 50px;
@@ -133,7 +141,12 @@ article
 
 @media only screen and (max-width:736px){
 	#help h1 {
-		padding-bottom: 3vh;
+		padding-bottom: 10vh;
 		font-size: 4vh;
 	}
+
+	.reg-title h2{
+		font-size: 25px;
+	}
+
 }
