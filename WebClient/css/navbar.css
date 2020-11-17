@@ -13,6 +13,7 @@ body{
 }
 
 nav{
+    z-index: 10000;
     background-color: lightpink;
     position: fixed;
     top: 0;
@@ -90,7 +91,7 @@ nav a{
 
 /* Desktop View */
 
-@media only screen and (min-width: 1312px) {
+@media only screen and (min-width: 1230px) {
     .nav-link{
         display: block;
         width: auto;
@@ -113,7 +114,7 @@ nav a{
     }
 
     .menu li{
-        padding: 15px 30px;
+        padding: 15px 20px;
         position: relative;
     }
 
@@ -151,6 +152,7 @@ nav a{
     .active.nav-link.link a:before{
         width: 50%;
     }
+
 
 
 }

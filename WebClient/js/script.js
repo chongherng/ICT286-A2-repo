@@ -6,6 +6,7 @@ $(document).ready(function(){
    var newPage = getPage(window.location.hash);
    render(newPage);
 
+
    addActiveClass();
 
    $('nav a').click(function(e){
