@@ -16,20 +16,28 @@ article
 }
 
 
-#register, #help{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.reg-title h2{
-	font-weight: bold;
-}
-
 .content-container{
 	margin-top: 50px;
 }
 
+
+.article-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.reg-title h2{
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 50px;
+	font-size: 40px;
+}
+
+/* Register page css */
 .register-main {
 	background-color: #fff;
 	padding-left: 3vw;
@@ -74,7 +82,7 @@ article
 #register-form button:hover{
 	transform: scale(1.1);
 }
-
+/* Help page css */
 .FAQ-container {
 	display: grid;
 	grid-gap: 1rem;
