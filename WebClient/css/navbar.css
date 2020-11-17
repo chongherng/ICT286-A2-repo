@@ -1,0 +1,163 @@
+html,body{
+    overflow-x: hidden;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+nav{
+    z-index: 10000;
+    background-color: lightpink;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-top: -2.5px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+nav a{
+    color: azure;
+    text-decoration: none;
+}
+
+
+
+.menu li{
+    font-size: 16px;
+    padding: 15px 5px;
+}
+
+.menu li a {
+    display: block;
+}
+
+.nav-logo a{
+    font-size: 20px;
+	color: limegreen;
+    width: fit-content;
+}
+
+.secondary{
+    border-bottom: 1px #444 solid;
+}
+
+
+.toggle{
+    order: 1;
+}
+
+.nav-link.mobile-first{
+    order: 2;
+}
+
+.searchbar {
+    margin-right: 20px;
+}
+
+.nav-link{
+    width: 100%;
+    text-align: center;
+    order: 3;
+    display: none;
+}
+
+.nav-link.toggled{
+    display: block;
+}
+
+/* Mobile Menu */
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle{
+    cursor: pointer;
+}
+
+
+.menu i{
+    display: inline-block;
+    position: relative;
+    font-size: 22px;
+}
+
+/* Desktop View */
+
+@media only screen and (min-width: 1200px) {
+    .nav-link{
+        display: block;
+        width: auto;
+        order: 1;
+        
+    }
+
+    .toggle{
+        order: 0;
+        display: none;
+    }
+
+    .nav-logo{
+        flex: 1;
+        order: 1;
+    }
+
+    .mobile-first{
+        order: 2;
+    }
+
+    .menu li{
+        padding: 15px 7px;
+        position: relative;
+    }
+
+    .secondary{
+        border-bottom: 0;
+    }
+
+    .menu{
+       justify-content: center;
+    }
+
+    .link{
+        margin-right: 60px;
+    }
+
+    .nav-link a:hover{
+        color: rgb(80, 69, 69);
+    }
+
+    .nav-link a::before {
+        content: '';
+        display: block;
+        height: 4px;
+        width: 0%;
+        background-color: limegreen;
+        position: absolute;
+        top: 0%;
+        transition: all ease-in-out 200ms;
+    }
+
+    .link:hover a:before{
+        width: 80%;
+    }
+
+    .active.nav-link.link a:before{
+        width: 80%;
+    }
+
+
+
+}

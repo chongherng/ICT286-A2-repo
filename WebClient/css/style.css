@@ -1,0 +1,214 @@
+html, body {margin:0; height:100%;overflow: visible;}
+
+*
+{
+    padding:0 px;
+    box-sizing: border-box;
+}
+
+
+article 
+{
+    float: left;
+	width: 100%;
+	overflow: hidden;
+    background-color: lightgreen;
+	min-height: 100vh;
+}
+
+.nav-link input[type=text] 
+{
+	padding:4px;
+	border: 2px solid #ccc;
+	font-size: 12px;
+	border-radius: 25px;
+	width: 300px;
+}
+
+
+.content-container
+{
+	margin-top: 50px;
+}
+
+
+.article-container
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.reg-title h2
+{
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 50px;
+	font-size: 40px;
+}
+
+/* Login Page CSS */
+.login-main 
+{
+	background-color: azure;
+	padding-left: 3vw;
+	padding-right: 3vw;
+	padding-bottom: 5vw;
+	padding-top: 5vw;
+	overflow: hidden;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	position: relative;
+	max-width: 100%;
+	min-height: 380px;
+	width: 60%;
+}
+
+#login-form input 
+{
+	background: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+#login-form button 
+{
+	border-radius: 20px;
+	border: 1px solid #f14d30;
+	background:  #f14d30;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+#login-form button:hover
+{
+	transform: scale(1.1);
+}
+
+/* Register Page CSS */
+.register-main 
+{
+	background-color: azure;
+	padding-left: 3vw;
+	padding-right: 3vw;
+	padding-bottom: 5vw;
+	padding-top: 5vw;
+	overflow: hidden;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	position: relative;
+	max-width: 100%;
+	min-height: 380px;
+	width: 60%;
+}
+
+#register-form input 
+{
+	background: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+#register-form button 
+{
+	border-radius: 20px;
+	border: 1px solid #f14d30;
+	background:  #f14d30;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.field 
+{
+	padding-bottom: 20px;
+}
+
+#register-form button:hover
+{
+	transform: scale(1.1);
+}
+
+/* Help Page CSS */
+.FAQ-container 
+{
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+}
+
+.FAQ 
+{
+	padding-top: 25px;
+	padding-bottom: 25px;
+	border:none;
+	background-color: azure;
+}
+
+.help-container 
+{
+	width: 70%;
+}
+
+.help-container hr 
+{
+	width: 98%;
+	border-top: 1px solid grey;
+}
+
+.FAQ p,i
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.FAQ p 
+{
+	margin: 15px;
+}
+
+
+.FAQ i 
+{
+	font-size: 20px;
+	padding-bottom: 5px;
+}
+
+#help h1
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 7vh;
+	padding-top:9vh;
+	font-weight: bold;
+	font-size: 6vh;
+}
+
+
+@media only screen and (max-width:736px)
+{
+	#help h1 
+	{
+		padding-bottom: 10vh;
+		font-size: 4vh;
+	}
+
+	.reg-title h2
+	{
+		font-size: 25px;
+	}
+
+}
