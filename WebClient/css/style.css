@@ -5,97 +5,6 @@ html, body {margin:0; height:100%;overflow: visible;}
     box-sizing: border-box;
 }
 
-/* Style for the navigation bar itself */
-.topnav {
-	overflow: hidden;
-	background-color: lightpink;
-	position: fixed;
-	top: 0;
-	width: 100%;
-}
-
-/* Style for the links inside the navigation bar */
-.topnav a {
-	float: left;
-	display: block;
-	color: azure;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-family: sans-serif;
-	font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-	background-color: limegreen;
-	color: black;
-}
-
-/* Style the "active" element to highlight the current page */
-.topnav a.active {
-	background-color: lightgreen;
-	color: white;
-}
-
-/* Style the input container */
-.topnav .search-container {
-	float: right;
-}
-
-/* Style the input field inside the navbar */
-.topnav input[type=text] {
-	padding: 6px;
-	margin-top: 8px;
-	font-size: 17px;
-	border: none;
-}
-
-/* Style the button inside the input container */
-.topnav .search-container button {
-	float: right;
-	padding: 6px;
-	margin-top: 8px;
-	margin-right: 16px;
-	background: #ddd;
-	font-size: 17px;
-	border: none;
-	cursor: pointer;
-}
-
-.topnav .search-container button:hover {
-	background: #ccc;
-}
-
-/* Style the input container */
-.topnav .login-container {
-	float: right;
-}
-
-/* Style the input field inside the navbar */
-.topnav input[type=text] {
-	padding: 6px;
-	margin-top: 8px;
-	font-size: 17px;
-	border: none;
-	width: 150px; /* adjust as needed (as long as it doesn't break the topnav) */
-}
-
-/* Style the button inside the input container */
-.topnav .login-container button {
-	float: right;
-	padding: 6px;
-	margin-top: 8px;
-	margin-right: 16px;
-	background: #ddd;
-	font-size: 17px;
-	border: none;
-	cursor: pointer;
-}
-
-.topnav .login-container button:hover {
-	background: #ccc;
-}
 
 article 
 {
@@ -117,7 +26,7 @@ article
 	font-weight: bold;
 }
 
-.main-content {
+.register-main {
 
 	background-color: #fff;
 	padding-left: 3vw;
@@ -189,10 +98,14 @@ article
 	padding-right: 10px;
 }
 
+.FAQ p {
+	margin: 15px;
+}
 
 
 .FAQ i {
 	font-size: 20px;
+	padding-bottom: 5px;
 }
 
 #help h1{
