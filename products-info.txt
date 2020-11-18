@@ -1,0 +1,6 @@
+Can you add the product info in this format along with the image you want to use?
+I'll add them into the database later.
+
+
+Name - Material - Color - Price - StockXS - StockS - StockM - StockL - StockXL
+
