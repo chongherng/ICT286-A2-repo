@@ -141,11 +141,15 @@ article
 	}
 
 	.reg-title h2{
-		font-size: 25px;
+		font-size: 20px;
 	}
 
 	.login-title h2{
 		font-size: 25px;
+	}
+
+	#register-form button{
+		font-size: 10px;
 	}
 
 }
