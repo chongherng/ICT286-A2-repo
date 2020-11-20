@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+</html>
 <html>
+
 <head>
     <title>Eco-Fabrics</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="./css/style.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/navbar.css">
     <script src="./js/jquery-3.5.1.js"></script>
     <script src="./js/script.js"></script>
 </head>
+
 <body>
     <div id="main">
         <nav>
@@ -167,7 +171,7 @@
                     </div>
                 </div>
             </article>
-            <article id="register" hidden="hidden" >
+            <article id="register" hidden="hidden">
                 <div class="article-container">
                     <div class="register-main">
                         <div class="reg-title">
@@ -201,13 +205,35 @@
                                     </button>
                                 </div>
                             </form>
+                        <?php
+                            if (isset($_GET["error"])){
+                                if($_GET["error"] == "emptyInput") {
+                                    echo "<p>Please fill in all fields!</p>";
+                                }
+                                if($_GET["error"] == "invalidEmail") {
+                                    echo "<p>Please enter a proper email!</p>";
+                                }
+                                if($_GET["error"] == "invalidName") {
+                                    echo "<p>Please enter a proper name!</p>";
+                                }
+                                if($_GET["error"] == "emailTaken") {
+                                    echo "<p>Email already taken!</p>";
+                                }
+                                if($_GET["error"] == "none") {
+                                    echo "<p>You have signed up!</p>";
+                                }
+                            }
+                        ?>
                         </div>
+
                     </div>
                 </div>
             </article>
         </div>
     </div>
-    <footer><p>footer</p></footer>
+    <footer>
+        <p>footer</p>
+    </footer>
 </body>
-</html>
 
+</html>
