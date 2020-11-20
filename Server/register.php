@@ -2,7 +2,7 @@
 
 if(isset($_POST["submit"])){
 
-    $email = $_POST["email"];
+    $username = $_POST["username"];
     $password = $_POST["password"];
     $firstName = $_POST["fName"];
     $lastName = $_POST["lName"];
@@ -19,14 +19,14 @@ if(isset($_POST["submit"])){
         die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br/>Error number:" . mysqli_connect_errno());
     }
     
-    if(isInputEmpty($email,$password,$firstName,$lastName) !== false){
+    if(isInputEmpty($username,$password,$firstName,$lastName) !== false){
         $dbc->close();
         header("location: ../Server/index.php#register?error=emptyInput");
         exit();
     }
-    if(isEmailInvalid($email) !== false) {
+    if(isusernameInvalid($username) !== false) {
         $dbc->close();
-        header("location: ../Server/index.php#register?error=invalidEmail");
+        header("location: ../Server/index.php#register?error=InvalidUsername");
         exit();
     }
     if(isNameValid($firstName,$lastName) !== false){
@@ -34,13 +34,13 @@ if(isset($_POST["submit"])){
         header("location: ../Server/index.php#register?error=invalidName");
         exit();
     }
-    if(emailExists($dbc,$email) !== false) {
+    if(usernameExists($dbc,$username) !== false) {
         $dbc->close();
-        header("location: ../Server/index.php#register?error=emailTaken");
+        header("location: ../Server/index.php#register?error=usernameTaken");
         exit();
     }
 
-    createUser($dbc, $email, $password, $firstName, $lastName);
+    createUser($dbc, $username, $password, $firstName, $lastName);
 
 } else {
     header("location: ../Server/index.php#register");
@@ -48,16 +48,16 @@ if(isset($_POST["submit"])){
 }
 
 
-function isInputEmpty($email,$password,$firstName,$lastName){
-    if(empty($email) || empty($password) || empty($firstName) || empty($lastName)) {
+function isInputEmpty($username,$password,$firstName,$lastName){
+    if(empty($username) || empty($password) || empty($firstName) || empty($lastName)) {
         return true;
     } else{
         return false;
     }
 }
 
-function isEmailInvalid($email) {
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL) ){
+function isUsernameInvalid($username) {
+    if(!preg_match(("/^[a-zA-Z0-9]*$/"), $username) ){
         return true;
     } else {
         return false;
@@ -72,9 +72,9 @@ function isNameValid($firstName,$lastName){
     }
 }
 
-function emailExists($dbc,$email){
-    $query = $dbc->real_escape_string($email);
-    $sql = "SELECT * FROM users WHERE userEmail = $query";
+function usernameExists($dbc,$username){
+    $query = $dbc->real_escape_string($username);
+    $sql = "SELECT * FROM users WHERE username = $query";
     $result = mysqli_query($dbc,$sql);
     if($result->num_rows > 0) {
         return true;
@@ -83,15 +83,15 @@ function emailExists($dbc,$email){
     }
 }
 
-function createUser($dbc, $email, $password, $firstName, $lastName){
-    $email = $dbc->real_escape_string($email);
+function createUser($dbc, $username, $password, $firstName, $lastName){
+    $username = $dbc->real_escape_string($username);
     $password = $dbc->real_escape_string($password);
     $firstName = $dbc->real_escape_string($firstName);
     $lastName = $dbc->real_escape_string($lastName);
 
     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (userType,userEmail,userFName,userLName,userPwd) VALUES ('Member',$email,$firstName,$lastName,$hashedPwd)";
+    $sql = "INSERT INTO users (userType,username,userFName,userLName,userPwd) VALUES ('Member',$username,$firstName,$lastName,$hashedPwd)";
     mysqli_query($dbc,$sql);
     $dbc->close();
     header("location: ../Server/index.php#register?error=none");

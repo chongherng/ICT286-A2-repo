@@ -2,7 +2,7 @@
 
     if(isset($_POST["submit"])) {
 
-        $email = $_POST["email"];
+        $username = $_POST["username"];
         $password = $_POST["password"];
         
         $local = 'localhost';
@@ -18,18 +18,18 @@
             echo "Error: No result found";
         }
 
-        if (isInputEmpty($email, $password) !== false) {
+        if (isInputEmpty($username, $password) !== false) {
             $dbc->close();
             header("location: ../Server/index.php#register?error=emptyInput");
             exit();
         }
-        if (isEmailInvalid($email) !== false) {
+        if (isUsernameInvalid($username) !== false) {
             $dbc->close();
-            header("location: ../Server/index.php#register?error=invalidEmail");
+            header("location: ../Server/index.php#register?error=invalidUsername");
             exit();
         }
 
-        loginUser($dbc, $email, $password); 
+        loginUser($dbc, $username, $password); 
 
     } else{
         $dbc->close();
@@ -39,28 +39,28 @@
 
 
 
-function isInputEmpty($email, $password)
+function isInputEmpty($username, $password)
 {
-    if (empty($email) || empty($password)) {
+    if (empty($username) || empty($password)) {
         return true;
     } else {
         return false;
     }
 }
 
-function isEmailInvalid($email)
+function isUsernameInvalid($username)
 {
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!preg_match(("/^[a-zA-Z0-9]*$/"), $username)) {
         return true;
     } else {
         return false;
     }
 }
 
-function emailExists($dbc, $email)
+function usernameExists($dbc, $username)
 {
-    $query = $dbc->real_escape_string($email);
-    $sql = "SELECT * FROM users WHERE userEmail = $query";
+    $query = $dbc->real_escape_string($username);
+    $sql = "SELECT * FROM users WHERE username = $query";
     $result = mysqli_query($dbc, $sql);
     if ($result->num_rows > 0) {
         return true;
@@ -69,8 +69,8 @@ function emailExists($dbc, $email)
     }
 }
 
-function loginUser($dbc, $email, $password){
-    $userExists = emailExists($dbc, $email);
+function loginUser($dbc, $username, $password){
+    $userExists = usernameExists($dbc, $username);
 
     if($userExists === false) {
         $dbc->close();
@@ -87,9 +87,10 @@ function loginUser($dbc, $email, $password){
         while($row = $result->fetch_assoc()) {
             $_SESSION["userID"] = $row["userID"];         
             $_SESSION["userType"] = $row["userType"];
-            $_SESSION["userEmail"] = $row["userEmail"];
+            $_SESSION["username"] = $row["username"];
             $_SESSION["userFName"] = $row["userFName"];
             $_SESSION["userLName"] = $row["userLName"];
+            $_SESSION["userEmail"] = $row["userEmail"];
             $_SESSION["userAddress"] = $row["userAddress"];
             $_SESSION["userGender"] = $row["userGender"];
             $_SESSION["userContact"] = $row["userContact"];
