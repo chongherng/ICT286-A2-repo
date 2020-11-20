@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"></html>
+<html>
+	<head>
+		<title>Eco-Fabrics</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<style>
+		ul.products li {
+		width: 370px;
+		margin: 5px;
+		padding: 5px;
+		display: inline-block;
+		text-align: center;
+		background-color:lightgreen;
+		font-family: "Times New Roman";
+		border-radius: 10px;
+		border: 2px solid #585858;
+		}
+		
+		.center {
+		text-align: center;
+		}
+		
+		.pagination {
+		display: inline-block;
+		}
+		
+		.pagination a {
+		color: black;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: background-color .3s;
+		}
+		
+		.pagination a.active {
+		background-color: #4CAF50;
+		color: white;
+		}
+		
+		.pagination a:hover:not(.active) {background-color: #ddd;}
+	</style>
+	<body> <!--Template of product catalog-->
+		<div class="center">
+			<ul class="products"> <!--A page of the product catalog-->
+				<li> <!--Product data should be pulled from database-->
+					<img src="../images/placeholder.jpg" />
+					<h4>Waterproof Hiking Jacket</h4>
+					<span id="price">$19.00</span>
+					<br />
+					<span id="stock">In Stock</span>
+				</li>
+				<li>
+					<img src="../images/placeholder.jpg" />
+					<h4>Reversible Denim Jacket</h4>
+					<span id="price">$25.00</span>
+					<br />
+					<span id="stock">Out of Stock</span>
+				</li>
+				<li>
+					<img src="../images/placeholder.jpg" />
+					<h4>Nylon Windbreaker</h4>
+					<span id="price">$23.00</span>
+					<br />
+					<span id="stock">In Stock</span>
+				</li>
+				<li>
+					<img src="../images/placeholder.jpg" />
+					<h4>Casual Bomber Jacket</h4>
+					<span id="price">$28.00</span>
+					<br />
+					<span id="stock">In Stock</span>
+				</li>
+				<li>
+					<img src="../images/placeholder.jpg" />
+					<h4>Full Zip Hoodie</h4>
+					<span id="price">$14.00</span>
+					<br />
+					<span id="stock">Out of Stock</span>
+				</li>
+				<li>
+					<img src="../images/placeholder.jpg" />
+					<h4>Lace Trim Undershorts</h4>
+					<span id="price">$7.00</span>
+					<br />
+					<span id="stock">In Stock</span>
+				</li>
+			</ul>
+		</div>
+		<div class="center">
+			<div class="pagination"> <!--5 pages: 6 products on each page-->
+				<a href="#">&laquo;</a>
+				<a class="active" href="#page1">1</a>
+				<a href="#page2">2</a>
+				<a href="#page3">3</a>
+				<a href="#page4">4</a>
+				<a href="#page5">5</a>
+				<a href="#">&raquo;</a>
+			</div>
+		</div>
+	</body>
+</html>	
