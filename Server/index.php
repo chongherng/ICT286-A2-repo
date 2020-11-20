@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
@@ -7,11 +11,11 @@
 <head>
     <title>Eco-Fabrics</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./css/style.css" rel="stylesheet" />
+    <link href="../WebClient/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/navbar.css">
-    <script src="./js/jquery-3.5.1.js"></script>
-    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="../WebClient/css/navbar.css">
+    <script src="../WebClient/js/jquery-3.5.1.js"></script>
+    <script src="../WebClient/js/script.js"></script>
 </head>
 
 <body>
@@ -19,20 +23,42 @@
         <nav>
             <ul class="menu">
                 <li class="nav-logo"><a href="#home">Eco-Fabrics</a></li>
+                <?php
+                    if(isset($_SESSION["userID"])){
+                        echo '<li class="mobile-only"><a href="#">Profile</a></li>';
+                    }
+                ?>
                 <li class="nav-link link active"><a href="#home">Home</a></li>
                 <li class="nav-link link"><a href="#about">About</a></li>
                 <li class="nav-link link"><a href="#products">Product</a></li>
                 <li class="nav-link link"><a href="#help">Help</a></li>
                 <li class="nav-link mobile-first searchbar">
-                    <form action="#" method="POST">
+                    <form action="#" method="GET">
                         <div class="searchbar-container">
                             <input type="text" name="search" placeholder="Search.." autocomplete="off">
                             <input type="image" src="./images/searchbar.png" alt="search" id="search-icon">
                         </div>
                     </form>
                 </li>
-                <li class="nav-link link mobile-first"><a href="#login">Login</a></li>
-                <li class="nav-link link mobile-first secondary"><a href="#register">Register</a></li>
+                <?php
+                    if(isset($_SESSION["userID"])){
+                        echo '<li class="nav-link cart"><a href="#cart"><i class="fa fa-shopping-cart"></i></a></li>';
+                        if($_SESSION["userType"] == "Member"){
+                            echo '<div class="dropdown nav-link secondary mobile-first">
+                                    <button class="dropbtn">User</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Profile</a>
+                                        <a href="./logout.php">Logout</a>
+                                    </div>
+                                    </div>';
+                        }
+                        echo '<li class="mobile-only "><a href="#">Logout</a></li>';
+                    } else {
+                        echo '<li class="nav-link link mobile-first"><a href="#login">Login</a></li>';
+                        echo '<li class="nav-link link mobile-first secondary"><a href="#register">Register</a></li>';
+                    }
+                ?>
+
                 <li class="toggle"><i class="fa fa-bars"></i></li>
             </ul>
         </nav>

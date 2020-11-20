@@ -74,7 +74,7 @@ function loginUser($dbc, $email, $password){
 
     if($userExists === false) {
         $dbc->close();
-        header("location: ../index.php#login?error=invalidLogin");
+        header("location: ../Server/index.php#login?error=invalidLogin");
         exit();
     }
 
@@ -86,26 +86,20 @@ function loginUser($dbc, $email, $password){
         session_start();
         while($row = $result->fetch_assoc()) {
             $_SESSION["userID"] = $row["userID"];         
-            $userType = $row["userType"];
+            $_SESSION["userType"] = $row["userType"];
             $_SESSION["userEmail"] = $row["userEmail"];
             $_SESSION["userFName"] = $row["userFName"];
             $_SESSION["userLName"] = $row["userLName"];
             $_SESSION["userAddress"] = $row["userAddress"];
             $_SESSION["userGender"] = $row["userGender"];
             $_SESSION["userContact"] = $row["userContact"];
-            if($userType === "Member"){
-                $dbc->close();
-                header("location: ../Server/member.php");
-                exit();
-            } else if($userType === "Staff") {
-                $dbc->close();
-                header("location: ../Server/staff.php");
-                exit();
-            }
+            $dbc->close();
+            header("location: ../Server/index.php");
+            exit();
         }
     } else{
         $dbc->close();
-        header("location: ../index.php#login?error=invalidLogin");
+        header("location: ../Server/index.php#login?error=invalidLogin");
         exit();
     }
 }
