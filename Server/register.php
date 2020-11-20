@@ -91,8 +91,9 @@ function createUser($dbc, $email, $password, $firstName, $lastName){
 
     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (userEmail,userFName,userLName,userPwd) VALUES ($email,$firstName,$lastName,$hashedPwd)";
+    $sql = "INSERT INTO users (userType,userEmail,userFName,userLName,userPwd) VALUES ('Member',$email,$firstName,$lastName,$hashedPwd)";
     mysqli_query($dbc,$sql);
+    $dbc->close();
     header("location: ../Server/index.php#register?error=none");
 }
 

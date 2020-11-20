@@ -147,7 +147,7 @@
                             <h2>Sign in</h2>
                         </div>
                         <div class="login-form-container">
-                            <form action="#" method="POST" id="login-form">
+                            <form action="../Server/login.php" method="POST" id="login-form">
                                 <div class="field">
                                     <label for="email">Email Address:</label>
                                     <br>
@@ -167,6 +167,19 @@
                                     </button>
                                 </div>
                             </form>
+                            <?php
+                            if (isset($_GET["error"])) {
+                                if ($_GET["error"] == "emptyInput") {
+                                    echo "<p>Please fill in all fields!</p>";
+                                }
+                                if ($_GET["error"] == "invalidEmail") {
+                                    echo "<p>Please enter a proper email!</p>";
+                                }
+                                if ($_GET["error"] == "invalidLogin") {
+                                    echo "<p>Invalid login information!</p>";
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -205,25 +218,25 @@
                                     </button>
                                 </div>
                             </form>
-                        <?php
-                            if (isset($_GET["error"])){
-                                if($_GET["error"] == "emptyInput") {
+                            <?php
+                            if (isset($_GET["error"])) {
+                                if ($_GET["error"] == "emptyInput") {
                                     echo "<p>Please fill in all fields!</p>";
                                 }
-                                if($_GET["error"] == "invalidEmail") {
+                                if ($_GET["error"] == "invalidEmail") {
                                     echo "<p>Please enter a proper email!</p>";
                                 }
-                                if($_GET["error"] == "invalidName") {
+                                if ($_GET["error"] == "invalidName") {
                                     echo "<p>Please enter a proper name!</p>";
                                 }
-                                if($_GET["error"] == "emailTaken") {
+                                if ($_GET["error"] == "emailTaken") {
                                     echo "<p>Email already taken!</p>";
                                 }
-                                if($_GET["error"] == "none") {
+                                if ($_GET["error"] == "none") {
                                     echo "<p>You have signed up!</p>";
                                 }
                             }
-                        ?>
+                            ?>
                         </div>
 
                     </div>
