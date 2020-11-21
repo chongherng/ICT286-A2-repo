@@ -150,7 +150,7 @@ session_start();
                                 <p>Q: What type of payment do you accept?</p>
                                 <p>A: We accept MasterCard, VISA and PayPal.</p>
                                 <p>Q: How do I place an order?</p>
-                                <p>A: Click Add To Cart to place the item you want to buy in your cart. Once you have finished
+                                <p>A: You will need to log in first. Afterwards, click Add To Cart to place the item you want to buy in your cart. Once you have finished
                                     shopping,
                                     click the cart icon and click Checkout.</p>
                                 <p>Q: My Payment was declined, what should I do?</p>
@@ -164,12 +164,10 @@ session_start();
                                 <hr>
                                 <p>Q: How do I create an account?</p>
                                 <p>A: <a href="#register">Click here to create an account</a></p>
-                                <p>Q: I'm having trouble signing into my account.</p>
-                                <p>A: If you can't remember your password, click on the '<b>forgotten password</b>' link on the
-                                    sign in
-                                    page.</p>
-                                <p>Q: How do I change my profile settings?</p>
-                                <p>A: Click on the top right to access your profile.</p>
+                                <p>Q: How do I update my profile?</p>
+                                <p>A: You can update your profile once you logged in by mousing over your name and clicking on profile. If you are on mobile, open the drop down menu and click on profile.</p>
+                                <p>Q: How do I logout of my account?</p>
+                                <p>A: Mouse over your name and click logout. If you are on mobile, click on the drop down menu</p>
                             </div>
                         </div>
                     </div>
