@@ -100,6 +100,7 @@ function loginUser($dbc, $username, $password){
                     $_SESSION["userAddress"] = $row["userAddress"];
                     $_SESSION["userGender"] = $row["userGender"];
                     $_SESSION["userContact"] = $row["userContact"];
+                    $_SESSION["userPwd"] = $password;
                     $dbc->close();
                     header("location: ../WebClient/index.php");
                     exit();

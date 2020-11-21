@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +24,9 @@
             <ul class="menu">
                 <li class="nav-logo"><a href="#home">Eco-Fabrics</a></li>
                 <?php
-                    if(isset($_SESSION["userID"])){
-                        echo '<li class="mobile-only nav-link"><a href="#">Profiles</a></li>';
-                    }
+                if (isset($_SESSION["userID"])) {
+                    echo '<li class="mobile-only nav-link"><a href="#profile">Profile</a></li>';
+                }
                 ?>
                 <li class="nav-link link active"><a href="#home">Home</a></li>
                 <li class="nav-link link"><a href="#about">About</a></li>
@@ -41,31 +41,31 @@
                     </form>
                 </li>
                 <?php
-                    if(isset($_SESSION["userID"])){
-                        echo '<li class="nav-link cart"><a href="#cart"><i class="fa fa-shopping-cart"></i></a></li>';
-                        if($_SESSION["userType"] == "Member"){
-                            echo '<div class="dropdown nav-link secondary mobile-first">
-                                    <button class="dropbtn">'.$_SESSION["username"].'</button>
+                if (isset($_SESSION["userID"])) {
+                    echo '<li class="nav-link cart"><a href="#cart"><i class="fa fa-shopping-cart"></i></a></li>';
+                    if ($_SESSION["userType"] == "Member") {
+                        echo '<div class="dropdown nav-link secondary mobile-first">
+                                    <button class="dropbtn">' . $_SESSION["username"] . '</button>
                                     <div class="dropdown-content">
-                                        <a href="#">Profile</a>
+                                        <a href="#profile">Profile</a>
                                         <a href="../Server/logout.php">Logout</a>
                                     </div>
                                     </div>';
-                        } else if($_SESSION["userType"] == "Staff"){
-                            echo '<div class="dropdown nav-link secondary mobile-first">
+                    } else if ($_SESSION["userType"] == "Staff") {
+                        echo '<div class="dropdown nav-link secondary mobile-first">
                             <button class="dropbtn">' . $_SESSION["username"] . '</button>
                             <div class="dropdown-content">
-                            <a href="#">Profile</a>
-                            
+                            <a href="#profile">Profile</a>
+                            <a href="#">Manage</a>
                             <a href="logout.php">Logout</a>
                             </div>
                             </div>';
-                        }
-                        echo '<li class="mobile-only nav-link"><a href="../Server/logout.php">Logout</a></li>';
-                    } else {
-                        echo '<li class="nav-link link mobile-first"><a href="#login">Login</a></li>';
-                        echo '<li class="nav-link link mobile-first secondary"><a href="#register">Register</a></li>';
                     }
+                    echo '<li class="mobile-only nav-link"><a href="../Server/logout.php">Logout</a></li>';
+                } else {
+                    echo '<li class="nav-link link mobile-first"><a href="#login">Login</a></li>';
+                    echo '<li class="nav-link link mobile-first secondary"><a href="#register">Register</a></li>';
+                }
                 ?>
 
                 <li class="toggle"><i class="fa fa-bars"></i></li>
@@ -274,6 +274,91 @@
                     </div>
                 </div>
             </article>
+            <?php
+            if(isset($_SESSION["userID"])){
+                echo '<article id="profile" hidden="hidden">
+                    <div class="article-container">
+                        <div class="profile-main">
+                            <div class="profile-name">
+                                <h2>'. $_SESSION["userFName"]." ". $_SESSION["userLName"].'</h2>
+                            </div>
+                            <div class="profile-form-container">
+                                <form action="../Server/update-profile.php" method="POST" id="update-profile-form">
+                                    <div class="field">
+                                        <label for="username">Username</label>
+                                        <br>
+                                        <input type="text" name="username" value="'.$_SESSION["username"].'" readonly>
+                                    </div>
+                                    <div class="field">
+                                        <label for="password">Password</label>
+                                        <br>
+                                        <input type="password" name="password" value="' . $_SESSION["userPwd"] . '" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="fname">First Name</label>
+                                        <br>
+                                        <input type="text" name="fname" value="' . $_SESSION["userFName"] . '" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="lname">Last Name</label>
+                                        <br>
+                                        <input type="lname" name="lname" value="' . $_SESSION["userLName"] . '" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="email">Email</label>
+                                        <br>
+                                        <input type="email" name="email" value="' . $_SESSION["userEmail"] . '">
+                                    </div>
+                                    <div class="field">
+                                        <label for="address">Address</label>
+                                        <br>
+                                        <input type="address" name="address" value="' . $_SESSION["userAddress"] . '">
+                                    </div>
+                                    <div class="field">
+                                        <label for="gender">Gender: </label>
+                                        <select name="gender">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <label for="contact">Contact Number</label>
+                                        <br>
+                                        <input type="contact" name="contact" value="' . $_SESSION["userContact"] . '">
+                                    </div>
+    
+                                    <div class="form-btn">
+                                        <button type="submit" name="submit">
+                                            Update Profile
+                                        </button>
+                                    </div>
+                                </form>';
+                                if (isset($_GET["error"])) {
+                                    if ($_GET["error"] == "emptyInput") {
+                                        echo "<p>Please fill in all required fields!</p>";
+                                    }
+                                    if ($_GET["error"] == "invalidName") {
+                                        echo "<p>Please enter a proper name!</p>";
+                                    }
+                                    if ($_GET["error"] == "invalidEmail") {
+                                        echo "<p>Please enter a proper email!</p>";
+                                    }
+                                    if ($_GET["error"] == "invalidContact") {
+                                        echo "<p>Please enter contact only in digits!</p>";
+                                    }
+                                    if ($_GET["error"] == "invalidGender") {
+                                        echo "<p>Please select one of the gender option!</p>";
+                                    }
+                                    if ($_GET["error"] == "none") {
+                                        echo "<p>You have successfully update your profile!</p>";
+                                    }
+                                }
+                            echo'</div>
+                        </div>
+                    </div>
+                </article>';
+            }
+            ?>
         </div>
     </div>
     <footer>
