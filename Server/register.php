@@ -4,39 +4,40 @@ if(isset($_POST["submit"])){
 
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $firstName = $_POST["fName"];
-    $lastName = $_POST["lName"];
+    $firstName = $_POST["fname"];
+    $lastName = $_POST["lname"];
 
     //Connect to database
     $local = 'localhost';
-    $username = 'X33896239';
-    $password = 'X33896239';
-    $dbname = 'X33896239';
+    $dbusername = 'root';
+    $dbpassword = '';
+    $dbname = 'a2';
 
-    $dbc = mysqli_connect($local, $username, $password, $dbname);
+    $dbc = mysqli_connect($local, $dbusername, $dbpassword, $dbname);
 
-    if (mysqli_connect_errno() !== false) {
+    if (mysqli_connect_errno()) {
         die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br/>Error number:" . mysqli_connect_errno());
     }
     
     if(isInputEmpty($username,$password,$firstName,$lastName) !== false){
         $dbc->close();
-        header("location: ../Server/index.php#register?error=emptyInput");
+        header("location: ../Server/index.php?error=emptyInput#register");
         exit();
     }
-    if(isusernameInvalid($username) !== false) {
+    if(isUsernameInvalid($username) !== false) {
         $dbc->close();
-        header("location: ../Server/index.php#register?error=InvalidUsername");
+        header("location: ../Server/index.php?error=InvalidUsername#register");
         exit();
     }
     if(isNameValid($firstName,$lastName) !== false){
         $dbc->close();
-        header("location: ../Server/index.php#register?error=invalidName");
+		echo "<script type='text/javascript'>alert('hi');</script>";
+        header("location: ../Server/index.php?error=invalidName#register");
         exit();
     }
-    if(usernameExists($dbc,$username) !== false) {
+    if(usernameExists($dbc,$username)) {
         $dbc->close();
-        header("location: ../Server/index.php#register?error=usernameTaken");
+        header("location: ../Server/index.php?error=usernameTaken#register");
         exit();
     }
 
@@ -65,7 +66,7 @@ function isUsernameInvalid($username) {
 }
 
 function isNameValid($firstName,$lastName){
-    if(!preg_match(("/^[a-zA-Z]*$/"), $firstName) || !preg_match(("/^[a-zA-Z]*$/"), $lastName)){
+    if(!preg_match(("/^[a-zA-Z \s]*$/"), $firstName) || !preg_match(("/^[a-zA-Z \s]*$/"), $lastName)){
         return true;
     } else {
         return false;
@@ -74,7 +75,7 @@ function isNameValid($firstName,$lastName){
 
 function usernameExists($dbc,$username){
     $query = $dbc->real_escape_string($username);
-    $sql = "SELECT * FROM users WHERE username = $query";
+    $sql = "SELECT * FROM users WHERE username ='".$query."'";
     $result = mysqli_query($dbc,$sql);
     if($result->num_rows > 0) {
         return true;
@@ -88,14 +89,15 @@ function createUser($dbc, $username, $password, $firstName, $lastName){
     $password = $dbc->real_escape_string($password);
     $firstName = $dbc->real_escape_string($firstName);
     $lastName = $dbc->real_escape_string($lastName);
+	$userType = "Member";
 
     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO users (userType,username,userFName,userLName,userPwd) VALUES ('Member',$username,$firstName,$lastName,$hashedPwd)";
+	$input = "'" . $userType . "', '" . $username . "', '" . $firstName . "', '" . $lastName . "', '" . $hashedPwd . "'";
+    $sql = "INSERT INTO users (userType,username,userFName,userLName,userPwd) VALUES (" . $input . ")";
     mysqli_query($dbc,$sql);
-    $dbc->close();
-    header("location: ../Server/index.php#register?error=none");
+	header("location: ../Server/index.php?error=none#register");
+
+
+	exit();
 }
-
-
 ?>

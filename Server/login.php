@@ -6,11 +6,11 @@
         $password = $_POST["password"];
         
         $local = 'localhost';
-        $username = 'X33896239';
-        $password = 'X33896239';
-        $dbname = 'X33896239';
+        $dbusername = 'root';
+        $dbpassword = '';
+        $dbname = 'a2';
     
-        $dbc = mysqli_connect($local, $username, $password, $dbname);
+        $dbc = mysqli_connect($local, $dbusername, $dbpassword, $dbname);
     
         if (mysqli_connect_errno()) {
             die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br/>Error number:" . mysqli_connect_errno());
@@ -20,12 +20,12 @@
 
         if (isInputEmpty($username, $password) !== false) {
             $dbc->close();
-            header("location: ../Server/index.php#register?error=emptyInput");
+            header("location: ../Server/index.php?error=emptyInput#login");
             exit();
         }
         if (isUsernameInvalid($username) !== false) {
             $dbc->close();
-            header("location: ../Server/index.php#register?error=invalidUsername");
+            header("location: ../Server/index.php?error=invalidUsername#login");
             exit();
         }
 
@@ -60,7 +60,7 @@ function isUsernameInvalid($username)
 function usernameExists($dbc, $username)
 {
     $query = $dbc->real_escape_string($username);
-    $sql = "SELECT * FROM users WHERE username = $query";
+    $sql = "SELECT * FROM users WHERE username = '".$query."'";
     $result = mysqli_query($dbc, $sql);
     if ($result->num_rows > 0) {
         return true;
@@ -72,37 +72,45 @@ function usernameExists($dbc, $username)
 function loginUser($dbc, $username, $password){
     $userExists = usernameExists($dbc, $username);
 
-    if($userExists === false) {
+    if($userExists == false) {
         $dbc->close();
-        header("location: ../Server/index.php#login?error=invalidLogin");
+        header("location: ../Server/index.php?error=invalidLogin#login");
         exit();
     }
 
     $password = $dbc->real_escape_string($password);
-    $query = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "SELECT * FROM users WHERE userPwd = $query";
-    $result = mysqli_query($dbc,$sql);
+    $queryPassword = "SELECT userPwd FROM users WHERE username = '".$username."'";
+    $result = mysqli_query($dbc,$queryPassword);
     if($result->num_rows > 0) {
-        session_start();
         while($row = $result->fetch_assoc()) {
-            $_SESSION["userID"] = $row["userID"];         
-            $_SESSION["userType"] = $row["userType"];
-            $_SESSION["username"] = $row["username"];
-            $_SESSION["userFName"] = $row["userFName"];
-            $_SESSION["userLName"] = $row["userLName"];
-            $_SESSION["userEmail"] = $row["userEmail"];
-            $_SESSION["userAddress"] = $row["userAddress"];
-            $_SESSION["userGender"] = $row["userGender"];
-            $_SESSION["userContact"] = $row["userContact"];
-            $dbc->close();
-            header("location: ../Server/index.php");
-            exit();
+            $queryHashed = $row["userPwd"];
         }
-    } else{
-        $dbc->close();
-        header("location: ../Server/index.php#login?error=invalidLogin");
-        exit();
+        if(password_verify($password,$queryHashed)){
+            $sql = "SELECT * FROM users WHERE username = '" . $username . "'";
+            $result = mysqli_query($dbc,$sql);
+            if($result->num_rows > 0) {
+                session_start();
+                while($row = $result->fetch_assoc()) {
+                    $_SESSION["userID"] = $row["userID"];         
+                    $_SESSION["userType"] = $row["userType"];
+                    $_SESSION["username"] = $row["username"];
+                    $_SESSION["userFName"] = $row["userFName"];
+                    $_SESSION["userLName"] = $row["userLName"];
+                    $_SESSION["userEmail"] = $row["userEmail"];
+                    $_SESSION["userAddress"] = $row["userAddress"];
+                    $_SESSION["userGender"] = $row["userGender"];
+                    $_SESSION["userContact"] = $row["userContact"];
+                    $dbc->close();
+                    header("location: ../Server/index.php");
+                    exit();
+                }
+            }
+            }else{
+                $dbc->close();
+                header("location: ../Server/index.php?error=invalidLogin#login");
+                exit();
+            }
     }
-}
     
+}
 ?>

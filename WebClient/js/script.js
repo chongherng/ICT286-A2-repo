@@ -7,12 +7,6 @@ $(document).ready(function(){
    render(newPage);
 
    addActiveClass();
-
-   $('nav a').click(function(e){
-       e.preventDefault();
-       var newPage = $(this).attr('href');
-       window.location.hash=newPage;
-   });
    
 
    $(window).on('hashchange', function(){
@@ -24,10 +18,14 @@ $(document).ready(function(){
    $(".toggle").on("click", function(){
     if($(".nav-link").hasClass("toggled")){
       $(".nav-link").removeClass("toggled");
+      $(".mobile-only").removeClass("toggled");
     } else{
       $(".nav-link").addClass("toggled");
+      $(".mobile-only").addClass("toggled");
     }
    }) 
+
+
 
 });
 
@@ -59,5 +57,3 @@ function addActiveClass(){
     }
     )}
 }
-
-

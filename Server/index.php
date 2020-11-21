@@ -14,8 +14,8 @@
     <link href="../WebClient/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../WebClient/css/navbar.css">
-    <script src="../WebClient/js/jquery-3.5.1.js"></script>
-    <script src="../WebClient/js/script.js"></script>
+    <script src="../WebClient/js/jquery-3.5.1.js" defer></script>
+    <script src="../WebClient/js/script.js" defer></script>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                 <li class="nav-logo"><a href="#home">Eco-Fabrics</a></li>
                 <?php
                     if(isset($_SESSION["userID"])){
-                        echo '<li class="mobile-only"><a href="#">Profile</a></li>';
+                        echo '<li class="mobile-only nav-link"><a href="#">Profiles</a></li>';
                     }
                 ?>
                 <li class="nav-link link active"><a href="#home">Home</a></li>
@@ -48,11 +48,11 @@
                                     <button class="dropbtn">'.$_SESSION["username"].'</button>
                                     <div class="dropdown-content">
                                         <a href="#">Profile</a>
-                                        <a href="./logout.php">Logout</a>
+                                        <a href="logout.php">Logout</a>
                                     </div>
                                     </div>';
                         }
-                        echo '<li class="mobile-only "><a href="#">Logout</a></li>';
+                        echo '<li class="mobile-only nav-link"><a href="logout.php">Logout</a></li>';
                     } else {
                         echo '<li class="nav-link link mobile-first"><a href="#login">Login</a></li>';
                         echo '<li class="nav-link link mobile-first secondary"><a href="#register">Register</a></li>';
@@ -183,9 +183,6 @@
                                     <label for="password">Password:</label>
                                     <br>
                                     <input type="password" name="password" placeholder="Password" required>
-                                </div>
-                                <div class="lost-password-field">
-                                    <a href="#">Lost your password?</a>
                                 </div>
                                 <div class="form-btn">
                                     <button type="submit" name="submit">
