@@ -21,30 +21,29 @@ if(isset($_POST["submit"])){
     
     if(isInputEmpty($username,$password,$firstName,$lastName) !== false){
         $dbc->close();
-        header("location: ../Server/index.php?error=emptyInput#register");
+        header("location: ../WebClient/index.php?error=emptyInput#register");
         exit();
     }
     if(isUsernameInvalid($username) !== false) {
         $dbc->close();
-        header("location: ../Server/index.php?error=InvalidUsername#register");
+        header("location: ../WebClient/index.php?error=InvalidUsername#register");
         exit();
     }
     if(isNameValid($firstName,$lastName) !== false){
         $dbc->close();
-		echo "<script type='text/javascript'>alert('hi');</script>";
-        header("location: ../Server/index.php?error=invalidName#register");
+        header("location: ../WebClient/index.php?error=invalidName#register");
         exit();
     }
     if(usernameExists($dbc,$username)) {
         $dbc->close();
-        header("location: ../Server/index.php?error=usernameTaken#register");
+        header("location: ../WebClient/index.php?error=usernameTaken#register");
         exit();
     }
 
     createUser($dbc, $username, $password, $firstName, $lastName);
 
 } else {
-    header("location: ../Server/index.php#register");
+    header("location: ../WebClient/index.php#register");
     exit();
 }
 
@@ -95,7 +94,7 @@ function createUser($dbc, $username, $password, $firstName, $lastName){
 	$input = "'" . $userType . "', '" . $username . "', '" . $firstName . "', '" . $lastName . "', '" . $hashedPwd . "'";
     $sql = "INSERT INTO users (userType,username,userFName,userLName,userPwd) VALUES (" . $input . ")";
     mysqli_query($dbc,$sql);
-	header("location: ../Server/index.php?error=none#register");
+	header("location: ../WebClient/index.php?error=none#register");
 
 
 	exit();

@@ -20,12 +20,12 @@
 
         if (isInputEmpty($username, $password) !== false) {
             $dbc->close();
-            header("location: ../Server/index.php?error=emptyInput#login");
+            header("location: ../WebClient/index.php?error=emptyInput#login");
             exit();
         }
         if (isUsernameInvalid($username) !== false) {
             $dbc->close();
-            header("location: ../Server/index.php?error=invalidUsername#login");
+            header("location: ../WebClient/index.php?error=invalidUsername#login");
             exit();
         }
 
@@ -33,7 +33,7 @@
 
     } else{
         $dbc->close();
-        header("location: ../Server/index.php#login");
+        header("location: ../WebClient/index.php#login");
         exit();
     }
 
@@ -74,7 +74,7 @@ function loginUser($dbc, $username, $password){
 
     if($userExists == false) {
         $dbc->close();
-        header("location: ../Server/index.php?error=invalidLogin#login");
+        header("location: ../WebClient/index.php?error=invalidLogin#login");
         exit();
     }
 
@@ -101,13 +101,13 @@ function loginUser($dbc, $username, $password){
                     $_SESSION["userGender"] = $row["userGender"];
                     $_SESSION["userContact"] = $row["userContact"];
                     $dbc->close();
-                    header("location: ../Server/index.php");
+                    header("location: ../WebClient/index.php");
                     exit();
                 }
             }
             }else{
                 $dbc->close();
-                header("location: ../Server/index.php?error=invalidLogin#login");
+                header("location: ../WebClient/index.php?error=invalidLogin#login");
                 exit();
             }
     }

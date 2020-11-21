@@ -48,11 +48,20 @@
                                     <button class="dropbtn">'.$_SESSION["username"].'</button>
                                     <div class="dropdown-content">
                                         <a href="#">Profile</a>
-                                        <a href="logout.php">Logout</a>
+                                        <a href="../Server/logout.php">Logout</a>
                                     </div>
                                     </div>';
+                        } else if($_SESSION["userType"] == "Staff"){
+                            echo '<div class="dropdown nav-link secondary mobile-first">
+                            <button class="dropbtn">' . $_SESSION["username"] . '</button>
+                            <div class="dropdown-content">
+                            <a href="#">Profile</a>
+                            
+                            <a href="logout.php">Logout</a>
+                            </div>
+                            </div>';
                         }
-                        echo '<li class="mobile-only nav-link"><a href="logout.php">Logout</a></li>';
+                        echo '<li class="mobile-only nav-link"><a href="../Server/logout.php">Logout</a></li>';
                     } else {
                         echo '<li class="nav-link link mobile-first"><a href="#login">Login</a></li>';
                         echo '<li class="nav-link link mobile-first secondary"><a href="#register">Register</a></li>';
