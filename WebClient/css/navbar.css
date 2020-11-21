@@ -132,7 +132,7 @@ nav a {
 
 /* Desktop View */
 
-@media only screen and (min-width: 1220px) {
+@media only screen and (min-width: 1120px) {
   .nav-link {
     display: block;
     width: auto;
@@ -167,7 +167,7 @@ nav a {
   }
 
   .link {
-    margin-right: 60px;
+    margin-right: 40px;
   }
 
   .nav-link a:hover {
@@ -204,7 +204,7 @@ nav a {
 
   .nav-link.cart {
     order: 2;
-    margin-right: 60px;
+    margin-right: 30px;
   }
 
   .dropdown {
