@@ -9,9 +9,9 @@ if(isset($_POST["submit"])){
 
     //Connect to database
     $local = 'localhost';
-    $dbusername = 'root';
-    $dbpassword = '';
-    $dbname = 'a2';
+    $dbusername = 'X33896239';
+    $dbpassword = 'X33896239';
+    $dbname = 'X33896239';
 
     $dbc = mysqli_connect($local, $dbusername, $dbpassword, $dbname);
 
