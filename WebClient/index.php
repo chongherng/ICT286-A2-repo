@@ -26,6 +26,9 @@ session_start();
                 <?php
                 if (isset($_SESSION["userID"])) {
                     echo '<li class="mobile-only nav-link"><a href="#profile">Profile</a></li>';
+                    if ($_SESSION["userType"] == "Staff"){
+                        echo '<li class="mobile-only nav-link"><a href="#manage">Manage</a></li>';
+                    }
                 }
                 ?>
                 <li class="nav-link link active"><a href="#home">Home</a></li>
@@ -46,7 +49,7 @@ session_start();
                     if ($_SESSION["userType"] == "Member") {
                         echo '<div class="dropdown nav-link secondary mobile-first">
                                     <button class="dropbtn">' . $_SESSION["username"] . '</button>
-                                    <div class="dropdown-content">
+                                    <div class="dropdown-content-member login-nav">
                                         <a href="#profile">Profile</a>
                                         <a href="../Server/logout.php">Logout</a>
                                     </div>
@@ -54,10 +57,10 @@ session_start();
                     } else if ($_SESSION["userType"] == "Staff") {
                         echo '<div class="dropdown nav-link secondary mobile-first">
                             <button class="dropbtn">' . $_SESSION["username"] . '</button>
-                            <div class="dropdown-content">
+                            <div class="dropdown-content-staff login-nav">
                             <a href="#profile">Profile</a>
-                            <a href="#">Manage</a>
-                            <a href="logout.php">Logout</a>
+                            <a href="#manage">Manage</a>
+                            <a href="../Server/logout.php">Logout</a>
                             </div>
                             </div>';
                     }
@@ -355,6 +358,74 @@ session_start();
                         </div>
                     </div>
                 </article>';
+                if($_SESSION["userType"] == "Staff"){
+                    echo '<article id="manage" hidden="hidden">
+                    <div class="sidebar">
+                        <div class="sidebar-nav">
+                            <a href="#register-sta" class="sidebar-nav-item">Create Staff Account</a>
+                            <br>
+                            <a href="#" class="sidebar-nav-item">Access Customer Account</a>
+                            <br>
+                            <a href="#" class="sidebar-nav-item">Add New Product</a>
+                            <br>
+                            <a href="#" class="sidebar-nav-item">Change Product Details</a>
+                            <br>
+                            <a href="#" class="sidebar-nav-item">Delete Product</a>
+                        </div>
+                    </div>  
+                    <div class="admin-main">
+                        <div id="register-staff-form-container">
+                            <div class="reg-title">
+                                <h2>Create Staff Account</h2>
+                            </div>
+                            <form action="../Server/register-staff.php" method="POST" id="register-staff-form">
+                                <div class="field">
+                                    <label for="username">Username:</label>
+                                    <br>
+                                    <input type="text" name="username" placeholder="Username" required>
+                                </div>
+                                <div class="field">
+                                    <label for="password">Password:</label>
+                                    <br>
+                                    <input type="password" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="field">
+                                    <label for="fname">First Name:</label>
+                                    <br>
+                                    <input type="text" name="fname" id="fname" placeholder="First Name" required>
+                                </div>
+                                <div class="field">
+                                    <label for="lname">Last Name:</label>
+                                    <br>
+                                    <input type="text" name="lname" id="lname" placeholder="Last Name" required>
+                                </div>
+                                <div class="form-btn">
+                                    <button type="submit" name="submit">
+                                        Create Account
+                                    </button>
+                                </div>
+                            </form>';
+                            if (isset($_GET["error"])) {
+                                if ($_GET["error"] == "emptyInput") {
+                                    echo "<p>Please fill in all fields!</p>";
+                                }
+                                if ($_GET["error"] == "invalidUsername") {
+                                    echo "<p>Please enter a proper username!</p>";
+                                }
+                                if ($_GET["error"] == "invalidName") {
+                                    echo "<p>Please enter a proper name!</p>";
+                                }
+                                if ($_GET["error"] == "usernameTaken") {
+                                    echo "<p>Username already taken!</p>";
+                                }
+                                if ($_GET["error"] == "none") {
+                                    echo "<p>You have signed up!</p>";
+                                }
+                            }
+                       '</div>
+                    </div>
+                </article>';
+                }
             }
             ?>
         </div>

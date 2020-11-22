@@ -1,4 +1,4 @@
-var page = ["#home", "#about", "#products", "#help", "#login", "#register", "#profile"];
+var page = ["#home", "#about", "#products", "#help", "#login", "#register", "#profile", "#manage"];
 
 var curPage = page[0];
 
