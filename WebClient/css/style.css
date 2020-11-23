@@ -254,6 +254,85 @@ article
     padding-top: 50px;
 }
 
+/* Cart Page */
+
+header{
+	font-size: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 80px;
+}
+
+.cart-row {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.cart-col {
+  display: inline-block;
+  float: none;
+  width: 15%;
+  height: auto;
+  text-align: center;
+  border-bottom: solid grey 1px;
+  margin-right: 25px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-size: 13px;
+}
+
+.cart-container{
+	margin-top: 50px;
+}
+
+.cart-quantity-input {
+  height: 25px;
+  width: 50px;
+}
+
+.cart-total {
+  text-align: center;
+  margin-top: 35px;
+}
+
+#cart-response-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#purchase-btn{
+    border-radius: 20px;
+	border: 1px solid #f14d30;
+	background:  #f14d30;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 8px 25px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin: 40px auto 80px auto;
+	display: block;
+}
+
+.remove-btn {
+	border-radius: 20px;
+	border: 1px solid #f14d30;
+	background:  #f14d30;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 8px 25px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+  	padding: 6px;
+}
+
+.cart-item, .cart-price, .cart-size{
+	padding-bottom: 13px;
+}
 
 @media only screen and (max-width:900px){
 	#help h1 {

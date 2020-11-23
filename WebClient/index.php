@@ -84,7 +84,6 @@ session_start();
                 <!--Load content of about page here.-->
             </article>
             <article id="products" hidden="hidden">
-                <!--Load content of products page here-->
                 <div class="product-container">
                     <div class="categories-header">
                         <h1>Categories</h1>
@@ -313,6 +312,33 @@ session_start();
                 echo '</div>
                         </div>
                     </div>
+                </article>';
+                echo '<article id="cart" hidden="hidden">
+                <div class="cart-container">
+                            <div id="cart-form-container">
+            <header>
+                <h3>CART</h3>
+            </header>
+            <form id="purchase-form" action="" method="POST" onsubmit="return validateForm(event)">
+                <div class="cart-row">
+                    <span class="cart-header-item cart-col">ITEM</span>
+                    <span class="cart-header-price cart-col">SIZE</span>
+                    <span class="cart-header-price cart-col">PRICE</span>
+                    <span class="cart-header-quantity cart-col">QUANTITY</span>
+                </div>
+                <div class="cart-items">
+                </div>
+                <div class="cart-total">
+                    <strong class="cart-total-title">Total</strong>
+                    <span class="cart-total-price">$0.00</span>
+                </div>
+                <button id="purchase-btn">PURCHASE</button>
+            </form>
+        </div>
+        <div id="cart-response-container">
+
+        </div>
+                </div>
                 </article>';
                 if ($_SESSION["userType"] == "Staff") {
                     echo '<article id="manage" hidden="hidden">

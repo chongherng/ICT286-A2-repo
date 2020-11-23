@@ -1,4 +1,4 @@
-var page = ["#home", "#about", "#products", "#help", "#login", "#register", "#profile", "#manage", "#jackets", "#shirts","#skirts","#pants","#undergarments"];
+var page = ["#home", "#about", "#products", "#help", "#login", "#register", "#profile", "#manage", "#jackets", "#shirts","#skirts","#pants","#undergarments","#cart"];
 
 var curPage = page[0];
 
@@ -9,9 +9,10 @@ $(document).ready(function(){
    addActiveClass();
    loadProduct();
 
+   
+
    $(window).on('hashchange', function(){
        var newPage = getPage(window.location.hash);
-       console.log(newPage);
        if (
          window.location.hash == "#jackets" ||
          window.location.hash == "#shirts" ||
@@ -21,7 +22,12 @@ $(document).ready(function(){
        ) {
          renderProductPage(newPage);
        } else {
-         render(newPage);
+          $("#jackets").show();
+          $("#skirts").hide();
+          $("#shirts").hide();
+          $("#pants").hide();
+          $("#undergarments").hide();
+          render(newPage);
        }
    });
 
@@ -101,7 +107,7 @@ function displayProduct(response) {
                                 <img class="product-image" src="${data.ImgSrc}">
                                 <div class="product-details">
                                     <div class="product-description">
-                                        <input type="hidden" class="product-id" value="${data.ProductID}">
+                                        <span class="product-id" hidden>${data.ID}</span>
                                         <span class="product-title">${data.Name}</span>
                                     </div>
                                     <br/>
@@ -114,7 +120,7 @@ function displayProduct(response) {
                                     </div>
                                     <br/>
                                     <div class="product-description">
-                                        <span class="product-color">Color:${data.Color}</span>
+                                        <span class="product-color">Color: ${data.Color}</span>
                                     </div>
                                     <br/>
                                     <div class="product-description">
@@ -149,16 +155,139 @@ function displayProduct(response) {
     }
     productRow
       .getElementsByClassName("add-to-cart-button")[0]
-      .addEventListener("click", addItemToCart);
+      .addEventListener("click", addToCartclicked);
   }
 }
 
-function addItemToCart(e) {
-  let button = e.target;
-  let product = button.parentElement.parentElement;
-  let title = product.getElementsByClassName("product-title")[0].innerText;
-  let price = product.getElementsByClassName("product-price")[0].innerText;
-  let id = product.getElementsByClassName("product-id")[0].innerText;
-  let size = product.getElementsByClassName("product-size")[0].innerText;
-  addItemToCart(title, price, id, size);
+function addToCartclicked(e) {
+  let cartExist = document.getElementById("cart");
+  if(JSON.stringify(cartExist) != "null") {
+    let button = e.target;
+    let product = button.parentElement.parentElement;
+    let title = product.getElementsByClassName("product-title")[0].innerText;
+    let price = product.getElementsByClassName("product-price")[0].innerText;
+    trimPrice = $.trim(price);
+    trimPrice = trimPrice.split(" ");
+    price = trimPrice[1];
+    let id = product.getElementsByClassName("product-id")[0].innerText;
+    let size = product.getElementsByClassName("product-size")[0].value
+    addToCart(title,price,id,size);
+    updateCartTotal();
+  } else{
+    alert("Please login to add item to cart");
+  }
+}
+
+function addToCart(title,price,id,size){
+  let cartRow = document.createElement("div");
+  let cartItems = document.getElementsByClassName("cart-items")[0];
+  let cartItemNames = cartItems.getElementsByClassName("cart-item-title");
+  for (i = 0; i < cartItemNames.length; i++) {
+    if (cartItemNames[i].innerText == title) {
+      alert("This item is already added to the cart");
+      return;
+    }
+  }
+  let cartRowContents = `
+          <div class="cart-row">
+              <div class="cart-item cart-col">
+              <input type="text" class="cart-item-id" value="${id}" hidden>
+              <span class="cart-item-title">${title}</span>
+              </div>
+              <span class="cart-size cart-col">${size}</span>
+              <input class="cart-size-input" value="${size}" hidden>
+              <span class="cart-price cart-col">${price}</span>
+              <div class="cart-quantity cart-col">
+              <input class="cart-quantity-input" type="number" value="1">
+              <button class="remove-btn">REMOVE</button>
+              </div>
+          </div>`;
+  cartRow.innerHTML = cartRowContents;
+  cartItems.append(cartRow);
+  cartRow
+    .getElementsByClassName("remove-btn")[0]
+    .addEventListener("click", removeCartItem);
+  cartRow
+    .getElementsByClassName("cart-quantity-input")[0]
+    .addEventListener("change", quantityChanged);
+}
+
+function updateCartTotal() {
+  let total = 0;
+  let cartItemContainer = document.getElementsByClassName("cart-items")[0];
+  let cartRows = cartItemContainer.getElementsByClassName("cart-row");
+  for (i = 0; i < cartRows.length; i++) {
+    let cartRow = cartRows[i];
+    let priceElement = cartRow.getElementsByClassName("cart-price")[0];
+    let quantityElement = cartRow.getElementsByClassName(
+      "cart-quantity-input"
+    )[0];
+    let price = parseFloat(priceElement.innerText.slice(1));
+    let quantity = parseFloat(quantityElement.value);
+    total = total + price * quantity;
+  }
+  document.getElementsByClassName("cart-total-price")[0].innerHTML =
+    "$" + total.toFixed(2);
+}
+
+function removeCartItem(e) {
+  e.target.parentElement.parentElement.remove();
+  updateCartTotal();
+}
+
+function quantityChanged(e) {
+  let input = e.target;
+  if (isNaN(input.value) || input.value <= 0) {
+    input.value = 1;
+  }
+  updateCartTotal();
+}
+
+function validateForm(e) {
+  e.preventDefault();
+  let cartItems = document.getElementsByClassName("cart-items")[0];
+  let cartRows = cartItems.getElementsByClassName("cart-row");
+  if (cartRows.length == 0) {
+    alert("Please select at least one item before submitting!");
+    return false;
+  }
+  let data = getData();
+  makePurchase(data);
+}
+
+function getData(){
+  let data = "";
+  let cartItems = document.getElementsByClassName("cart-items")[0];
+  let cartRows = cartItems.getElementsByClassName("cart-row");
+    for (i = 0; i < cartRows.length; i++) {
+      data +=
+        "&itemID[]=" +
+        encodeURI(cartRows[i].getElementsByClassName("cart-item-id")[0].value);
+      data +=
+        "&itemQty[]=" +
+        encodeURI(
+          cartRows[i].getElementsByClassName("cart-quantity-input")[0].value);
+      data +=
+        "&itemSize[]=" +
+        encodeURI(
+          cartRows[i].getElementsByClassName("cart-size-input")[0].value
+        );
+    }
+    return data;
+}
+
+function makePurchase(data) {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      processResponse(this.responseText);
+    }
+  };
+  xhr.open("POST", "../Server/purchase.php", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send(data);
+}
+
+function processResponse(response) {
+  document.getElementById("cart-response-container").innerHTML = response;
 }
