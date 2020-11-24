@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="./css/navbar.css">
 		<script src="./js/jquery-3.5.1.js"></script>
 		<script src="./js/script.js"></script>
+		<script src="./js/about.js"></script>
 	</head>
 	<body>
 		<div id="main">
@@ -16,7 +17,7 @@
 				<ul class="menu">
 					<li class="nav-logo"><a href="#home">Eco-Fabrics</a></li>
 					<li class="nav-link link active"><a href="#home">Home</a></li>
-					<li class="nav-link link"><a href="#about">About</a></li>
+					<li class="nav-link link" onclick="init();"><a href="#about">About</a></li>
 					<li class="nav-link link"><a href="#products">Product</a></li>
 					<li class="nav-link link"><a href="#help">Help</a></li>
 					<li class="nav-link mobile-first searchbar">
@@ -24,9 +25,9 @@
                             <div class="searchbar-container">
                                 <input type="text" name="search" placeholder="Search.." autocomplete="off">
                                 <input type="image" src="./images/searchbar.png" alt="search" id="search-icon">
-                            </div>
-                        </form>
-                    </li>
+							</div>
+						</form>
+					</li>
 					<li class="nav-link link mobile-first"><a href="#login">Login</a></li>
 					<li class="nav-link link mobile-first secondary"><a href="#register">Register</a></li>
 					<li class="toggle"><i class="fa fa-bars"></i></li>
@@ -34,15 +35,105 @@
 			</nav>
 			<div class="content-container">
 				<article id="home">
-					<p> This is the Home page.</p>
-					<!--Default: Load content of home page here.-->
+					<div id="h" class="article-container">
+						<div class="welcome">
+							<h1>Welcome!</h1>
+							<br />
+							<p>
+								Users who are interested in purchasing our products can browse through our online catalog, 
+								which can be accessed by clicking "Products" in the navigation bar above.
+							</p>
+							<br />
+							<p>
+								For those who have something specific in mind, they can search for it, 
+								which is also done through the navigation bar.
+							</p>
+							<br />
+							<p>
+								To actually be able to buy them though, they have to register an account on our website.
+							<p>
+							<br />
+							<p>
+								If you need more help, just look at the Help section! Have a nice day! 
+							</p>
+							<br />
+							<p>
+								PS: To contact us, look at the footer, which is located at the bottom of the page.
+							</p>
+							<p id="source">© Background by Yugal Srivastava from Pexels</p>
+						</div>
+					</div>
 				</article>
 				<article id="about" hidden="hidden">
-					<p style="color: red"> This is the About page.</p>
-					<!--Load content of about page here.-->
+					<div id="a" class="article-container">
+						<div class="vertical-menu">
+							<div id="t" class="sidebar-active">History</div>
+							<div id="m">Mission Statement</div>
+							<div id="g">Historical Glory</div>
+							<div id="s">Charitable Support</div>
+							<div id="w">Product Information</div>
+						</div>
+						<div class="pages">
+							<div id="history">
+								<h1>History</h1>
+								<br />
+								<p>
+									Eco-Fabrics was founded in 2018 by John Doe, who at the time just graduated from the National University of Singapore with a degree in Environmental Studies. 
+									As someone who grew up without the money to buy new clothes when needed, 
+									he was dismayed when he learnt of just how much textiles were wasted and wanted to do something about it. 
+									Before founding Eco-Fabrics, he volunteered to take in any clothes that people did not want anymore and recycle them into new clothes (also known as upscaling). 
+									Feedback from these people, who were satisfied with his services, gave him the confidence he needed to expand his reach from a one-man job to an entire company.
+								</p>
+							</div>
+							<div id="mission">
+								<h1>Mission Statement</h1>
+								<br />
+								<p>
+									Did you know? Every year, roughly 100 million tonnes of textiles end up in landfills.
+								</p>
+								<br />
+								<p>
+									Here at Eco-Fabrics, our goal is to reduce that number by providing an alternative, which is recycling them into new clothes. 
+									They are then sold at cheap prices.
+								</p>
+							</div>
+							<div id="glory">
+								<h1>Historical Glory</h1>
+								<br />
+								<p>
+									As Eco-Fabrics is still a relatively new company, we have not made as much impact on the world as we would like. 
+									Of course, that is subject to change. 
+									Already, we are the proud winner of the 2019 Greenest Startups Award, with hopefully more to come.
+								</p>
+							</div>
+							<div id="support">
+								<h1>Charitable Support</h1>
+								<br />
+								<p>
+									We are a major supporter of "Caritas", 
+									an organization dedicated to ensuring that everyone's basic needs are met, 
+									one of which includes access to affordable clothing.
+								</p>
+								<br />
+								<p>
+									Every year, we donate at least 500 of our products, as well as our gross profits to them. 
+									In return, they help us reach out to more people and organizations, persuading them to donate their unwanted textiles to us. 
+									It is a win-win relationship, since as we expand, we are able to donate more of our products and gross profits to them.
+								</p>
+							</div>
+							<div id="why">
+								<h1>Product Information</h1>
+								<br />
+								<p>
+									Our products are made from unwanted textiles, which would have ended up in landfills if it weren’t for us. 
+									Rest assured that these recycled clothes are just as good as any clothes you can find in regular shops, 
+									for every stitch of them is meticulously crafted by highly-trained weavers who have experience in upscaling and share the same goal of reducing textile wastage.
+								</p>
+							</div>
+						</div>
+					</div>
 				</article>
 				<article id="products" hidden="hidden">
-					<!--Load content of products page here-->
 				</article>
 				<article id="help" hidden="hidden">
 					<div class="article-container">
@@ -125,7 +216,7 @@
 									<span>Technical</span>
 									<hr>
 									<p>Q: How do I create an account?</p>
-								    <p>A: Click <a href="register.html">here</a> to create an account.</p>
+									<p>A: Click <a href="register.html">here</a> to create an account.</p>
 									<br>
 									<p>Q: I'm having trouble signing into my account.</p>
 									<p>A: If you can't remember your password, click on the "Forgot Password?" link on the Login page.</p>
@@ -157,7 +248,7 @@
 									</div>
 									<p><a href="password.html">Forgot Password?</a></p>
 									<br>
-								    <button type="submit">Login</button>
+									<button type="submit">Login</button>
 								</form>
 							</div>
 						</div>
@@ -201,7 +292,16 @@
 				</article>
 			</div>
 		</div>
-		<footer><p>footer</p></footer>
+		<div class="footer">
+			<div class="contact">
+				<h3>Contact Us</h3>
+				<br />
+				<p>Tel: +65 8342 6435</p>
+				<p>Email: contact@ecofabrics.com</p>
+				<p>Address: 2 Geylang East Avenue 2 #04-109, 389754, Singapore</p>
+			</div>
+			<br />
+			<p>© Copyright 2020 Eco-Fabrics. All Rights Reserved.</p>
+		</div>
 	</body>
 </html>
-
