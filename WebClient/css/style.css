@@ -1,7 +1,6 @@
-html, body {margin:0; height:100%; overflow: visible;}
+html, body {margin:0; height:100%;overflow: visible;}
 
-*
-{
+*{
     padding:0 px;
     box-sizing: border-box;
 }
@@ -11,26 +10,91 @@ article
     float: left;
 	width: 100%;
 	overflow: hidden;
-    background-color: lightgreen;
+    background-color: #f1f1f1;
 	min-height: 100vh;
 }
 
-.nav-link input[type=text] 
-{
-	padding:4px;
-	border: 2px solid #ccc;
-	font-size: 12px;
-	border-radius: 25px;
-	width: 300px;
-}
-
-.content-container
-{
+.content-container{
 	margin-top: 50px;
 }
 
-.article-container
-{
+.article-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.reg-title h2, .login-title h2{
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 50px;
+	font-size: 40px;
+}
+
+/* Register Page CSS */
+.register-main,.login-main,.profile-main{
+	background-color: #fff;
+	padding-left: 3vw;
+	padding-right: 3vw;
+	padding-bottom: 3vw;
+	padding-top: 4vw;
+	overflow: hidden;
+	box-shadow: 0 14px 20px rgba(17, 17, 17, 0.25);
+	position: relative;
+	max-width: 100%;
+	min-height: 360px;
+	width: 40%;
+}
+
+#register-form input,#login-form input, #update-profile-form input {
+	background: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+#register-form button, #login-form button, #update-profile-form button , #register-staff-form button{
+	border-radius: 20px;
+	border: 1px solid #f14d30;
+	background:  #f14d30;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+#register-staff-form-container{
+	position: relative;
+	overflow: hidden;
+	width: 70%;
+	padding-left: 10vw;
+	padding-top: 5vw;
+}
+
+#register-staff-form input{
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+.field {
+	padding-bottom: 20px;
+}
+
+#register-form button:hover,#login-form button:hover, #update-profile-form button:hover, #register-staff-form button:hover{
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.form-btn{
+	padding-top: 30px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -38,7 +102,7 @@ article
 
 /* Home Page CSS */
 #h {
-	padding-top: 10px;
+	margin-top: 10px;
 }
 
 .welcome {
@@ -70,67 +134,10 @@ article
 	text-align: left;
 }
 
-/* Login & Register Page CSS */
-.reg-title h2, .log-title h2
-{
-	font-weight: bold;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 50px;
-	font-size: 40px;
-}
-
-.register-main, .login-main
-{
-	background-color: azure;
-	padding-left: 3vw;
-	padding-right: 3vw;
-	padding-bottom: 5vw;
-	padding-top: 5vw;
-	overflow: hidden;
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-	position: relative;
-	max-width: 100%;
-	min-height: 380px;
-	width: 60%;
-}
-
-#register-form input, #login-form input 
-{
-	background: #eee;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0;
-	width: 100%;
-}
-
-#register-form button, #login-form button
-{
-	border-radius: 20px;
-	border: 1px solid #f14d30;
-	background:  #f14d30;
-	color: #fff;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-}
-
-#register-form button:hover, #login-form button:hover
-{
-	transform: scale(1.1);
-}
-
-.field 
-{
-	padding-bottom: 20px;
-}
-
 /* About Page CSS */
 #a {
 	align-items: initial;
+	margin-top: 0px;
 }
 
 .vertical-menu {
@@ -170,51 +177,44 @@ div.page-inactive {
 }
 
 /* Help Page CSS */
-.FAQ-container 
-{
+.FAQ-container {
 	display: grid;
 	grid-gap: 1rem;
 	grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
 }
 
-.FAQ 
-{
+.FAQ {
 	padding-top: 25px;
 	padding-bottom: 25px;
 	border:none;
-	background-color: azure;
+	background-color: #fff;
 }
 
-.help-container 
-{
+.help-container {
 	width: 70%;
 }
 
-.help-container hr 
-{
+.help-container hr {
 	width: 98%;
 	border-top: 1px solid grey;
 }
 
-.FAQ p, i
-{
+.FAQ p,i{
 	padding-left: 10px;
 	padding-right: 10px;
 }
 
-.FAQ p 
-{
+.FAQ p {
 	margin: 15px;
 }
 
-.FAQ i 
-{
+
+.FAQ i {
 	font-size: 20px;
 	padding-bottom: 5px;
 }
 
-#help h1
-{
+#help h1{
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -224,22 +224,228 @@ div.page-inactive {
 	font-size: 6vh;
 }
 
-@media only screen and (max-width:736px)
-{
-	.welcome 
-	{
-	        background-image: none;
-		background-color: darkturquoise;
-	}
-	
-	#help h1 
-	{
+/* Profile Page CSS */
+.profile-main{
+	box-shadow: none;
+	margin-bottom: 30px;
+}
+
+.profile-name{
+	font: bold;
+	font-size: 30px;
+	margin-bottom: 30px;
+}
+
+/* Product Page CSS */
+.product-image{
+    width: 200px;
+    height: 220px;
+    float: left;
+}
+
+.products-details-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.products {
+    flex: 1 1 520px;
+	margin: 15px;
+}
+
+.product-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.products-details-container{
+    width: 80%;
+}
+
+.product-details{
+    padding-left: 230px;
+    height: 180px;
+}
+
+.add-to-cart-container{
+    padding-left: 200px;
+}
+
+.add-to-cart-button{
+    border-radius: 20px;
+	border: 1px solid #f14d30;
+	background:  #f14d30;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 8px 25px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.add-to-cart-button:hover{
+    cursor: pointer;
+	transform: scale(1.1);
+}
+
+.product-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: 40px;
+}
+
+.categories-container{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-container a{
+    padding:1rem;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+}
+.categories-container a:hover{
+    text-decoration: underline;
+}
+
+.categories-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+/* Cart Page CSS */
+
+header{
+	font-size: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 80px;
+}
+
+.cart-row {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.cart-col {
+	display: inline-block;
+	float: none;
+	width: 15%;
+	height: auto;
+	text-align: center;
+	border-bottom: solid grey 1px;
+	margin-right: 25px;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	font-size: 13px;
+}
+
+.cart-container{
+	margin-top: 50px;
+}
+
+.cart-quantity-input {
+	height: 25px;
+	width: 50px;
+}
+
+.cart-total {
+	text-align: center;
+	margin-top: 35px;
+}
+
+#cart-response-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#purchase-btn{
+    border-radius: 20px;
+	border: 1px solid #f14d30;
+	background:  #f14d30;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 8px 25px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin: 40px auto 80px auto;
+	display: block;
+}
+
+.remove-btn {
+	border-radius: 20px;
+	border: 1px solid #f14d30;
+	background:  #f14d30;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 8px 25px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+  	padding: 6px;
+}
+
+.cart-item, .cart-price, .cart-size{
+	padding-bottom: 13px;
+}
+
+@media only screen and (max-width:900px){	
+	#help h1 {
 		padding-bottom: 10vh;
 		font-size: 4vh;
 	}
 	
-	.reg-title h2
-	{
+	.welcome {
+		background-image: none;
+		background-color: skyblue;
+	}
+	
+	.reg-title h2{
 		font-size: 25px;
 	}
+	
+	.login-title h2{
+		font-size: 25px;
+	}
+	
+	#register-form button{
+		font-size: 10px;
+	}
+	
+	.register-main, .login-main{
+		width: 70%;
+	}
+	
+	.profile-main{
+		width: 90%;
+	}
+	
+	.profile-name{
+		font-size: 25px;
+	}
+	
+	#register-staff-form-container{
+		width: 100%;
+		padding-left: 0;
+	}
+	
 }
+
+@media only screen and (max-width:640px){
+    .add-to-cart-button{
+        padding: 8px 20px;
+	}
+}	
