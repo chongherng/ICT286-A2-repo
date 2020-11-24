@@ -226,6 +226,12 @@ div.page-inactive {
 
 @media only screen and (max-width:736px)
 {
+	.welcome 
+	{
+	        background-image: none;
+		background-color: darkturquoise;
+	}
+	
 	#help h1 
 	{
 		padding-bottom: 10vh;
