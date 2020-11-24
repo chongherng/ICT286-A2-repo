@@ -1,4 +1,5 @@
-var page = ["#home", "#about", "#products", "#help", "#login", "#register", "#profile", "#manage", "#jackets", "#shirts","#skirts","#pants","#undergarments","#cart"];
+"use strict";
+var page = ["#home", "#about", "#products", "#help", "#login", "#register", "#profile", "#manage", "#jackets", "#shirts","#skirts","#pants","#undergarments","#cart","#search-result"];
 
 var curPage = page[0];
 
@@ -8,6 +9,9 @@ $(document).ready(function(){
 
    addActiveClass();
    loadProduct();
+   bindSearchForm();
+   bindUpdateProfileForm();
+   init();
 
    
 
@@ -43,6 +47,113 @@ $(document).ready(function(){
    }) 
 
 });
+
+
+var menu_ids = ["t", "m", "g", "s", "w"];
+var menus = [];
+var page_ids = ["history", "mission", "glory", "support", "why"];
+var pages = [];
+
+var activePage = 0;
+
+function init() {
+  for (var i = 0; i < menu_ids.length; i++) {
+    menus[i] = document.getElementById(menu_ids[i]);
+    SetupEventListener(menus[i], i);
+  }
+
+  for (var i = 0; i < page_ids.length; i++) {
+    pages[i] = document.getElementById(page_ids[i]);
+    pages[i].className = "page-inactive";
+  }
+
+  activate(activePage);
+}
+
+function SetupEventListener(obj, index) {
+  obj.addEventListener("click", function () {
+    deactivate(activePage);
+    activePage = index;
+    activate(activePage);
+  });
+}
+
+function activate(index) {
+  menus[index].className = "sidebar-active";
+
+  pages[index].className = "page-active";
+}
+
+function deactivate(index) {
+  menus[index].className = "sidebar-inactive";
+
+  pages[index].className = "page-inactive";
+}
+
+function bindUpdateProfileForm(){
+  $("#update-profile-form").on("submit", function (e) {
+    e.preventDefault();
+    let data = "";
+      data += "&password=" + encodeURI(document.getElementsByName("password")[0].value);
+      data += "&fname=" + encodeURI(document.getElementsByName("fname")[0].value);
+      data += "&lname=" + encodeURI(document.getElementsByName("lname")[0].value);
+      data += "&email=" + encodeURI(document.getElementsByName("email")[0].value);
+      data += "&address=" + encodeURI(document.getElementsByName("address")[0].value);
+      data += "&gender=" + encodeURI(document.getElementsByName("gender")[0].value);
+      data += "&contact=" + encodeURI(document.getElementsByName("contact")[0].value);
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          processUpdateProfileResponse(this.response);
+        }
+      };
+      xhr.open("POST", "../Server/update-profile.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send(data);
+    });  
+}
+
+function processUpdateProfileResponse(response){
+  if(response == "Empty Input"){
+    alert("Please enter a password and a name");
+  }
+  if(response == "Invalid Name"){
+    alert("Please enter a proper name");
+  }
+  if(response == "Invalid Email"){
+    alert("Please enter a proper email");
+  }
+  if(response == "Invalid Contact"){
+    alert("Please enter a proper contact (numbers only)");
+  }
+  if(response == "Invalid Gender"){
+    alert("Please select one of the gender option");
+  }
+  if(response == "Success"){
+    alert("Profile has been successfully updated");
+  }
+  location.reload();
+}
+
+function bindSearchForm(){
+  $("#searchForm").on('submit', function(e){
+    e.preventDefault();
+      let searchInput = document.getElementById("searchtext").value;
+      if (searchInput != "") {
+        let searchQuery = document.getElementById("searchtext").value;
+        let data = "&search=" + encodeURI(searchQuery);
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            processSearchResponse(this.response, searchQuery);
+          }
+        };
+        xhr.open("POST", "../Server/query.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(data);
+      }
+  })
+}
 
 function renderProductPage(newPage){
     if (newPage == curPage) return;
@@ -97,7 +208,7 @@ function loadProduct() {
 function displayProduct(response) {
   let dataObj = JSON.parse(response);
   var countKey = Object.keys(dataObj).length;
-  for (i = 0; i < countKey; i++) {
+  for (var i = 0; i < countKey; i++) {
     let data = dataObj[i];
     let productRow = document.createElement("div");
     productRow.className = "products";
@@ -182,7 +293,7 @@ function addToCart(title,price,id,size){
   let cartRow = document.createElement("div");
   let cartItems = document.getElementsByClassName("cart-items")[0];
   let cartItemNames = cartItems.getElementsByClassName("cart-item-title");
-  for (i = 0; i < cartItemNames.length; i++) {
+  for (var i = 0; i < cartItemNames.length; i++) {
     if (cartItemNames[i].innerText == title) {
       alert("This item is already added to the cart");
       return;
@@ -216,7 +327,7 @@ function updateCartTotal() {
   let total = 0;
   let cartItemContainer = document.getElementsByClassName("cart-items")[0];
   let cartRows = cartItemContainer.getElementsByClassName("cart-row");
-  for (i = 0; i < cartRows.length; i++) {
+  for (var i = 0; i < cartRows.length; i++) {
     let cartRow = cartRows[i];
     let priceElement = cartRow.getElementsByClassName("cart-price")[0];
     let quantityElement = cartRow.getElementsByClassName(
@@ -259,7 +370,7 @@ function getData(){
   let data = "";
   let cartItems = document.getElementsByClassName("cart-items")[0];
   let cartRows = cartItems.getElementsByClassName("cart-row");
-    for (i = 0; i < cartRows.length; i++) {
+    for (var i = 0; i < cartRows.length; i++) {
       data +=
         "&itemID[]=" +
         encodeURI(cartRows[i].getElementsByClassName("cart-item-id")[0].value);
@@ -290,4 +401,93 @@ function makePurchase(data) {
 
 function processResponse(response) {
   document.getElementById("cart-response-container").innerHTML = response;
+}
+
+
+
+function processSearchResponse(response, searchQuery) {
+  if (response == "No Result Found") {
+    alert("No Result Found");
+  } else {
+    //clear search content
+    document.getElementsByClassName("search-details-container")[0].innerHTML =
+      "";
+
+    //create header for result page
+    let searchHeader = document.createElement("div");
+    searchHeader.className = "product-header";
+    let searchDetail = document.createElement("div");
+    searchDetail.className = "search-details-content";
+    let searchHeading = document.getElementsByClassName(
+      "search-details-container"
+    )[0];
+    let searchHeaderContent = `
+                    <h2>Search Result: ${searchQuery}</h2>
+                    `;
+    searchHeader.innerHTML = searchHeaderContent;
+    searchHeading.append(searchHeader);
+    searchHeading.append(searchDetail);
+
+    //load product onto result page
+    displaySearchedProduct(response);
+
+    //direct to search page
+    let currentURL = window.location.href;
+    let defaultURL = currentURL.split("#")[0];
+    let searchPage = defaultURL + "#search-result";
+    window.location.href = searchPage;
+  }
+}
+
+function displaySearchedProduct(response) {
+  let dataObj = JSON.parse(response);
+  var countKey = Object.keys(dataObj).length;
+
+  for (var i = 0; i < countKey; i++) {
+    let data = dataObj[i];
+    let productRow = document.createElement("div");
+    productRow.className = "products";
+    let products = document.getElementsByClassName("search-details-content")[0];
+    /* Create product content div */
+    let productContent = `
+                                    <img class="product-image" src="${data.ImgSrc}"/>
+                                    <div class="product-details">
+                                        <div class="product-description">
+                                            <span class="product-id" hidden>${data.ID}</span>
+                                            <span class="product-title">${data.Name}</span>
+                                        </div>
+                                        <br/>
+                                        <div class="product-description">
+                                            <span class="product-price">Price: $${data.Price}</span>
+                                        </div>
+                                        <br/>
+                                        <div class="product-description">
+                                            <span class="product-material">Material: ${data.Material}</span>
+                                        </div>
+                                        <br/>
+                                        <div class="product-description">
+                                            <span class="product-color">Color: ${data.Color}</span>
+                                        </div>
+                                        <br/>
+                                        <div class="product-description">
+                                            <label for="size">Size: </label>
+                                            <select name="size" class="product-size">
+                                                <option value="XS">XS</option>
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                            </select>
+                                        </div>
+                                        <div class="add-to-cart-container">
+                                            <button class="add-to-cart-button" type="button">ADD TO CART</button>
+                                        </div>
+                                    </div>`;
+    productRow.innerHTML = productContent;
+    products.append(productRow);
+
+    productRow
+      .getElementsByClassName("add-to-cart-button")[0]
+      .addEventListener("click", addToCartclicked);
+  }
 }

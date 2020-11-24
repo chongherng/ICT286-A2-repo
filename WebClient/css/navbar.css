@@ -130,50 +130,7 @@ nav a {
   font-size: 22px;
 }
 
-/* Admin Sidebar*/
-#manage{
-	display: grid;
-  grid-template-columns: minmax(90px, 12%) 1fr;
-}
 
-.sidebar{
-	height: 100vh;
-	font-size: 1rem;
-  text-align: center;
-  z-index: 100;
-  background-color: rgb(245, 167, 179);
-  overflow: hidden;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2);
-}
-
-.sidebar-nav a{
-  list-style: none;
-  text-decoration: none;
-  color: azure;
-  padding-top: 45px;
-}
-
-.sidebar-nav{
-  padding-left: 5px;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sidebar-nav a:hover{
-  color: black;
-}
-
-.sidebar-nav a:active{
-  color: black;
-}
-
-
-
-.admin-main{
-	padding: 2rem;
-}
 
 
 /* Desktop View */

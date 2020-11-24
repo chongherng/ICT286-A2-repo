@@ -36,9 +36,9 @@ session_start();
                 <li class="nav-link link" id="id1"><a href="#products">Product</a></li>
                 <li class="nav-link link"><a href="#help">Help</a></li>
                 <li class="nav-link mobile-first searchbar">
-                    <form action="#" method="GET">
+                    <form method="POST" action="" id="searchForm">
                         <div class="searchbar-container">
-                            <input type="text" name="search" placeholder="Search.." autocomplete="off" />
+                            <input type="text" id="searchtext" name="search" placeholder="Search.." autocomplete="off" />
                             <input type="image" src="../WebClient/images/searchbar.png" alt="search" id="search-icon" />
                         </div>
                     </form>
@@ -76,12 +76,127 @@ session_start();
         </nav>
         <div class="content-container">
             <article id="home">
-                <p> This is the Home page.</p>
-                <!--Default: Load content of home page here.-->
+                <div id="h" class="article-container">
+                    <div class="welcome">
+                        <h1>Welcome!</h1>
+                        <br />
+                        <p>
+                            Users who are interested in purchasing our products can browse through our online catalog,
+                            which can be accessed by clicking "Products" in the navigation bar above.
+                        </p>
+                        <br />
+                        <p>
+                            For those who have something specific in mind, they can search for it,
+                            which is also done through the navigation bar.
+                        </p>
+                        <br />
+                        <p>
+                            To actually be able to buy them though, they have to register an account on our website.
+                        </p>
+                        <br />
+                        <p>
+                            If you need more help, just look at the Help section! Have a nice day!
+                        </p>
+                        <br />
+                        <p>
+                            PS: To contact us, look at the footer, which is located at the bottom of the page.
+                        </p>
+                        <p id="source">© Background by Yugal Srivastava from Pexels</p>
+                    </div>
+                </div>
             </article>
             <article id="about" hidden="hidden">
-                <p style="color: red"> This is the About page.</p>
-                <!--Load content of about page here.-->
+                <div id="a" class="article-container">
+                    <div class="vertical-menu">
+                        <div id="t" class="sidebar-active">History</div>
+                        <div id="m">Mission Statement</div>
+                        <div id="g">Historical Glory</div>
+                        <div id="s">Charitable Support</div>
+                        <div id="w">Product Information</div>
+                    </div>
+                    <div class="pages">
+                        <div id="history">
+                            <h1>History</h1>
+                            <br />
+                            <p>
+                                Eco-Fabrics was founded in 2018 by John Doe, who at the time just graduated from the National University of Singapore with a degree in Environmental Studies.
+                            </p>
+                            <br />
+                            <p>
+                                As someone who grew up without the money to buy new clothes when needed,
+                                he was dismayed when he learnt of just how much textiles were wasted and wanted to do something about it.
+                            </p>
+                            <br />
+                            <p>
+                                Before founding Eco-Fabrics, he volunteered to take in any clothes that people did not want anymore and recycle them into new clothes (also known as upscaling).
+                            </p>
+                            <br />
+                            <p>
+                                Feedback from these people, who were satisfied with his services, gave him the confidence he needed to expand his reach from a one-man job to an entire company.
+                            </p>
+                        </div>
+                        <div id="mission">
+                            <h1>Mission Statement</h1>
+                            <br />
+                            <p>
+                                Did you know? Every year, roughly 100 million tonnes of textiles end up in landfills.
+                            </p>
+                            <br />
+                            <p>
+                                Here at Eco-Fabrics, our goal is to reduce that number by providing an alternative, which is recycling them into new clothes.
+                                They are then sold at cheap prices.
+                            </p>
+                        </div>
+                        <div id="glory">
+                            <h1>Historical Glory</h1>
+                            <br />
+                            <p>
+                                As Eco-Fabrics is still a relatively new company, we have not made as much impact on the world as we would like.
+                            </p>
+                            <br />
+                            <p>
+                                Of course, that is subject to change.
+                            </p>
+                            <br />
+                            <p>
+                                Already, we are the proud winner of the 2019 Greenest Startups Award, with hopefully more to come.
+                            </p>
+                        </div>
+                        <div id="support">
+                            <h1>Charitable Support</h1>
+                            <br />
+                            <p>
+                                We are a major supporter of "Caritas",
+                                an organization dedicated to ensuring that everyone's basic needs are met,
+                                one of which includes access to affordable clothing.
+                            </p>
+                            <br />
+                            <p>
+                                Every year, we donate at least 500 of our products, as well as our gross profits to them.
+                            </p>
+                            <br />
+                            <p>
+                                In return, they help us reach out to more people and organizations, persuading them to donate their unwanted textiles to us.
+                            </p>
+                            <br />
+                            <p>
+                                It is a win-win relationship, since as we expand, we are able to donate more of our products and gross profits to them.
+                            </p>
+                        </div>
+                        <div id="why">
+                            <h1>Product Information</h1>
+                            <br />
+                            <p>
+                                Our products are made from unwanted textiles, which would have ended up in landfills if it weren't for us.
+                            </p>
+                            <br />
+                            <p>
+                                Rest assured that these recycled clothes are just as good as any clothes you can find in regular shops,
+                                for every stitch of them is meticulously crafted by highly-trained weavers who have experience in upscaling and share the same goal of reducing textile wastage.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <article id="products" hidden="hidden">
                 <div class="product-container">
@@ -231,6 +346,17 @@ session_start();
                     </div>
                 </div>
             </article>
+            <article id="search-result" hidden="hidden">
+                <div class="article-container">
+                    <div class="product-main">
+                        <div class="search-page-container">
+                            <div class="search-details-container">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
             <?php
             if (isset($_SESSION["userID"])) {
                 echo '<article id="profile" hidden="hidden">
@@ -240,7 +366,7 @@ session_start();
                                 <h2>' . $_SESSION["userFName"] . " " . $_SESSION["userLName"] . '</h2>
                             </div>
                             <div class="profile-form-container">
-                                <form action="../Server/update-profile.php" method="POST" id="update-profile-form">
+                                <form action="" method="POST" id="update-profile-form">
                                     <div class="field">
                                         <label for="username">Username</label>
                                         <br/>
@@ -273,10 +399,15 @@ session_start();
                                     </div>
                                     <div class="field">
                                         <label for="gender">Gender: </label>
-                                        <select name="gender">
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                        </select>
+                                        <select name="gender">';
+                if ($_SESSION["userGender"] == "male") {
+                    echo '<option value="male" selected>Male</option>
+                                                <option value="female">Female</option>';
+                } else {
+                    echo '<option value="male">Male</option>
+                                                <option value="female" selected>Female</option>';
+                }
+                echo '</select>
                                     </div>
                                     <div class="field">
                                         <label for="contact">Contact Number</label>
@@ -288,32 +419,12 @@ session_start();
                                             Update Profile
                                         </button>
                                     </div>
-                                </form>';
-                if (isset($_GET["error"])) {
-                    if ($_GET["error"] == "emptyInput") {
-                        echo "<p>Please fill in all required fields!</p>";
-                    }
-                    if ($_GET["error"] == "invalidName") {
-                        echo "<p>Please enter a proper name!</p>";
-                    }
-                    if ($_GET["error"] == "invalidEmail") {
-                        echo "<p>Please enter a proper email!</p>";
-                    }
-                    if ($_GET["error"] == "invalidContact") {
-                        echo "<p>Please enter contact only in digits!</p>";
-                    }
-                    if ($_GET["error"] == "invalidGender") {
-                        echo "<p>Please select one of the gender option!</p>";
-                    }
-                    if ($_GET["error"] == "none") {
-                        echo "<p>You have successfully update your profile!</p>";
-                    }
-                }
-                echo '</div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </article>';
-                echo '<article id="cart" hidden="hidden">
+                </article>
+                <article id="cart" hidden="hidden">
                 <div class="cart-container">
                             <div id="cart-form-container">
             <header>
@@ -342,12 +453,7 @@ session_start();
                 </article>';
                 if ($_SESSION["userType"] == "Staff") {
                     echo '<article id="manage" hidden="hidden">
-                    <div class="sidebar">
-                        <div class="sidebar-nav">
-                            <a href="#register-sta" class="sidebar-nav-item">Create Staff Account</a>
-                            <br/>
-                        </div>
-                    </div>  
+                <div class = "article-container">
                     <div class="admin-main">
                         <div id="register-staff-form-container">
                             <div class="reg-title">
@@ -397,7 +503,8 @@ session_start();
                             echo "<p>You have signed up!</p>";
                         }
                     }
-                    '</div>
+                    echo '</div>
+                    </div>
                     </div>
                 </article>';
                 }
@@ -501,9 +608,17 @@ session_start();
             ?>
         </div>
     </div>
-    <footer>
-        <p>footer</p>
-    </footer>
+    <div class="footer">
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <br />
+            <p>Tel: +65 8342 6435</p>
+            <p>Email: contact@ecofabrics.com</p>
+            <p>Address: 2 Geylang East Avenue 2 #04-109, 389754, Singapore</p>
+        </div>
+        <br />
+        <p>© Copyright 2020 Eco-Fabrics. All Rights Reserved.</p>
+    </div>
 </body>
 
 </html>

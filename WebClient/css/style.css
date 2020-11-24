@@ -39,7 +39,7 @@ article
 }
 
 /* Register page css */
-.register-main,.login-main,.profile-main{
+.register-main,.login-main,.profile-main, .admin-main{
 	background-color: #fff;
 	padding-left: 3vw;
 	padding-right: 3vw;
@@ -53,7 +53,7 @@ article
 	width: 40%;
 }
 
-#register-form input,#login-form input, #update-profile-form input {
+#register-form input,#login-form input, #update-profile-form input, #register-staff-form input {
 	background: #eee;
 	border: none;
 	padding: 12px 15px;
@@ -75,21 +75,6 @@ article
 	text-transform: uppercase;
 }
 
-#register-staff-form-container{
-	position: relative;
-	overflow: hidden;
-	width: 70%;
-	padding-left: 10vw;
-	padding-top: 5vw;
-}
-
-#register-staff-form input{
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0;
-	width: 100%;
-}
-
 
 .field {
 	padding-bottom: 20px;
@@ -105,6 +90,82 @@ article
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+/* Home Page CSS */
+#h {
+	margin-top: 10px;
+}
+
+.welcome {
+	border-radius: 25px;
+	background-image: url(../images/tree.jpg);
+	padding: 20px;
+	width: 76%;
+	height: 98vh;
+}
+
+#source {
+	position: relative;
+	top: 63vh;
+}
+
+/* Footer CSS */
+.footer {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: pink;
+	color: white;
+	text-align: center;
+	overflow: hidden;
+}
+
+.contact {
+	margin-top: 5px;
+	text-align: left;
+}
+
+/* About Page CSS */
+#a {
+	align-items: initial;
+	margin-top: 0px;
+}
+
+.vertical-menu {
+	width: 200px;
+}
+
+.vertical-menu div {
+	background-color: mintcream;
+	color: black;
+	display: block;
+	padding: 12px;
+	text-decoration: none;
+}
+
+.vertical-menu div:hover {
+	background-color: mediumaquamarine;
+}
+
+.vertical-menu div.sidebar-active {
+	background-color: mediumspringgreen;
+	color: white;
+}
+
+.pages {
+	background-color: mediumseagreen;
+	padding: 20px;
+	flex: 1;
+	min-height: 790px;
+}
+
+div.page-active {
+	display: block;
+}
+
+div.page-inactive {
+	display: none;
 }
 
 
@@ -192,7 +253,7 @@ article
     align-items: center;
 }
 
-.products-details-container{
+.products-details-container, .search-result{
     width: 80%;
 }
 
@@ -247,7 +308,7 @@ article
     text-decoration: underline;
 }
 
-.categories-header{
+.categories-header, .search-header{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -334,6 +395,13 @@ header{
 	padding-bottom: 13px;
 }
 
+/* Search Page */
+.search-details-content {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
 @media only screen and (max-width:900px){
 	#help h1 {
 		padding-bottom: 10vh;
@@ -365,7 +433,7 @@ header{
 	}
 
 	#register-staff-form-container{
-		width: 100%;
+		width: 90%;
 		padding-left: 0;
 	}
 

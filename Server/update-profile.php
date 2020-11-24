@@ -1,6 +1,5 @@
 <?php
 session_start();
-    if(isset($_POST["submit"])){
 
         $userID = $_SESSION["userID"];
         $username = $_SESSION["username"];
@@ -28,41 +27,37 @@ session_start();
 
         if (isInputEmpty($password, $firstName, $lastName) !== false) {
             $dbc->close();
-            header("location: ../WebClient/index.php?error=emptyInput#profile");
+            echo "Empty Input";
             exit();
         }
 
         if (isNameValid($firstName, $lastName) !== false) {
             $dbc->close();
-            header("location: ../WebClient/index.php?error=invalidName#profile");
+            echo "Invalid Name";
             exit();
         }
 
         if(isEmailInvalid($email) !== false) {
             $dbc->close();
-            header("location: ../WebClient/index.php?error=invalidEmail#profile");
+            echo "Invalid Email";
             exit();
         }
 
         if(isContactValid($contact) !== false){
             $dbc->close();
-            header("location: ../WebClient/index.php?error=invalidContact#profile");
+            echo "Invalid Contact";
             exit();
         }
 
         if(isGenderValid($gender) !== false) {
             $dbc->close();
-            header("location: ../WebClient/index.php?error=invalidGender#profile");
+            echo "Invalid Gender";
             exit();
         }
 
         updateProfile($dbc, $userID, $userType, $username, $password, $firstName, $lastName, $email, $address, $gender, $contact);
 
 
-    } else {
-    header("location: ../WebClient/index.php#profile");
-    exit();
-}
 
 function isInputEmpty($password, $firstName, $lastName)
 {
@@ -128,7 +123,7 @@ function updateProfile($dbc, $userID, $userType, $username, $password, $firstNam
     $_SESSION["userContact"] = $contact;
     $_SESSION["userPwd"] = $password;
     $dbc->close();
-    header("location: ../WebClient/index.php?error=none#profile");
+    echo "Success";
     exit();
 
 }
