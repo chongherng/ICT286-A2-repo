@@ -1,5 +1,5 @@
 "use strict";
-var page = ["#home", "#about", "#products", "#help", "#login", "#register", "#profile", "#manage", "#jackets", "#shirts","#skirts","#pants","#undergarments","#cart","#search-result"];
+var page = ["#home", "#about", "#products", "#help", "#login", "#register", "#profile", "#manage", "#jackets", "#shirts","#skirts","#dresses","#pants","#undergarments","#cart","#search-result"];
 
 var curPage = page[0];
 
@@ -22,7 +22,8 @@ $(document).ready(function(){
          window.location.hash == "#shirts" ||
          window.location.hash == "#skirts" ||
          window.location.hash == "#undergarments" ||
-         window.location.hash == "#pants"
+         window.location.hash == "#pants" ||
+         window.location.hash == "#dresses"
        ) {
          renderProductPage(newPage);
        } else {
@@ -30,6 +31,7 @@ $(document).ready(function(){
           $("#skirts").hide();
           $("#shirts").hide();
           $("#pants").hide();
+          $("#dresses").hide();
           $("#undergarments").hide();
           render(newPage);
        }
@@ -149,10 +151,7 @@ function bindSearchForm(){
           }
         };
         xhr.open("POST", "../Server/query.php", true);
-        xhr.setRequestHeader(
-          "Content-Type",
-          "application/x-www-form-urlencoded"
-        );
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(data);
       }
   })
@@ -165,6 +164,7 @@ function renderProductPage(newPage){
     $("#skirts").hide();
     $("#shirts").hide();
     $("#pants").hide();
+    $("#dresses").hide();
     $("#undergarments").hide();
     $(newPage).show();
 }
@@ -266,6 +266,9 @@ function displayProduct(response) {
     }
     if (data.Type == "Pants") {
       products[4].append(productRow);
+    }
+    if (data.Type == "Dresses") {
+      products[5].append(productRow);
     }
     productRow
       .getElementsByClassName("add-to-cart-button")[0]

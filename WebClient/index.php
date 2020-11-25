@@ -210,6 +210,7 @@ session_start();
                             <a href="#skirts">Skirts</a>
                             <a href="#undergarments">Undergarments</a>
                             <a href="#pants">Pants</a>
+                            <a href="#dresses">Dresses</a>
                         </div>
                     </div>
                     <div class="product-main">
@@ -248,6 +249,14 @@ session_start();
                         <div id="pants" hidden="hidden">
                             <div class="product-header">
                                 <h2>Pants</h2>
+                            </div>
+                            <div class="products-details-content">
+
+                            </div>
+                        </div>
+                        <div id="dresses" hidden="hidden">
+                            <div class="product-header">
+                                <h2>Dresses</h2>
                             </div>
                             <div class="products-details-content">
 
