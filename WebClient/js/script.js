@@ -139,7 +139,7 @@ function bindSearchForm(){
   $("#searchForm").on('submit', function(e){
     e.preventDefault();
       let searchInput = document.getElementById("searchtext").value;
-      if (searchInput != "") {
+      if (searchInput != "" && searchInput.trim().length) {
         let searchQuery = document.getElementById("searchtext").value;
         let data = "&search=" + encodeURI(searchQuery);
         let xhr = new XMLHttpRequest();
@@ -149,7 +149,10 @@ function bindSearchForm(){
           }
         };
         xhr.open("POST", "../Server/query.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
         xhr.send(data);
       }
   })
